@@ -1,81 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
-  <meta charset="utf-8">
-  <meta  content="width=970px, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Login </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
+[cc lang=”css”]{ /*Responsividade para desktops and laptops ———– */
+	Styles 
+	@media only screen
+	and (min-width : 1224px)
+}
 body{
-  background-color:#99ffeb;
+	background-color: #99ffeb;
 }
-.page-header{
-  margin-left: 100px;
-  margin-right: 100px;
+#H2{
+	margin-left:28%;
+	margin-top:5%;
+	font-family: Times New Roman;
+	font-size: 350%;
+	color: #ffffff;
+	z-index: = 10000;
 }
-.caixa1{
-   position: absolute;
-  top: 0px;
-  z-index: 0;
-  height: 80% ; 
-  width:60% ;
-  border-radius: 1%;
-  background-color: #525252;
-  margin-left:20%;
-  margin-top:10%;
-  margin-bottom: 2%;
+#h3{
+	font-family: Times New Roman;
+	font-size: 150%;
+	margin-left:40%;
+	color: #b3b3b3;
+	z-index: = 10000;
+}
+
+.form-horizontal{
+	margin-left:12%;
+	margin-top:4%;
+}
+
+#fundo2{
+	position: absolute;
+	top: 0px;
+	z-index: 0;
+	height: 65% ; 
+	width:50% ;
+	border-radius: 1%;
+	background-color: #1a1a1a;
+	margin-left:25%;
+	margin-top:0%;
+}
+.itens{
+	position: relative;
+	top: 6%;
+	z-index: = 10000;
+}
+.col-sm-2{
+	color:#ffffff;
+}
+.checkbox{
+	color: #b3b3b3;
+}
+a{
+	margin-left: 5%;
+	text-decoration: none;
+	color:#000000;
+}
+a:hover , a:active {
+	text-decoration: none;
+	color: #000000;
 }
 </style>
 <body>
-  <!--BARRA DE NAVEGAÇÃO-->
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-       <a class="navbar-brand" href="#">S.G.S.</a>
-     </div>
-     <ul class="nav navbar-nav">
-       <li class="active"><a href="#">Home</a></li>
-       <li><a href="Reservar.html">Reservar</a></li>
-       <li><a href="Consultar.html">Consultar</a></li> 
-       <li><a href="Historico.html">Histórico</a></li> 
-     </ul>
 
-     <ul class="nav navbar-nav navbar-right">
-      <!-- <li><a href="#">OPÇÃO DE LINK 0</a></li>-->
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="Configuracoes.html">Configurações</a></li>
-          <li><a href="Ajuda.html">Ajuda</a></li>
-          <!--<li><a href="#">OPÇÃO DE LINK 2</a></li>-->
-          <li role="separator" class="divider"></li>
-          <li><a href="Login.html">Sair</a></li>
-        </ul>      
-      </li>
-    </ul>
-  </div>
-</nav><!--  FIM  BARRA DE NAVEGAÇÃO-->
-
-
-<div class="col-sm-8 text-left">
-  <h1>Welcome</h1>
-  <p>ALGUMA COISA</p>
-  <hr>
-  <h3>Test</h3>
-  <p>MAIS COISA...</p>
-</div>
-
-  <div class="caixa1">
-        <h1>Titulo da parada</h1>
-        <p>Uma explicação .. eu acho </p>
-  </div>
-<!--
-  <div class="page-header">
-        <h1>Atualiações</h1>
-  </div>
--->
-</body>
-</html>
+	<div id="fundo2">  
+		<h2 id="H2">Sistema de salas</h2>
+		<h3 id="h3">Digite seus dados</h2>
+			<div class="itens">
+				<form action="Loginbd.php" method="POST" class="form-horizontal">
+					<div class="form-group">
+						<label for="Codigo" class="col-sm-2 control-label">Código</label>
+						<div class="col-sm-8">
+							<input type="text" name ="Codigo" class="form-control" id="Codigo" placeholder="Código" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="Senha" class="col-sm-2 control-label">Senha</label>
+						<div class="col-sm-8">
+							<input type="password" name="Senha" class="form-control" id="Senha" placeholder="Senha">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"> Lembrar
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" value="Entrar" class="btn btn-default">Entrar</button> 						
+							<a class="btn btn-default" href="Cadastrar.html" role="button">Cadastrar</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	</html>
