@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cadastro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+[cc lang=”css”]{ /*Responsividade para desktops and laptops ———– */
+  Styles 
+  @media only screen
+  and (min-width : 1224px)
+}
+body{
+  background-color: #99ffeb;
+}
+#H2{
+ margin-left:28%;
+ margin-top:5%;
+ font-family: Times New Roman;
+ font-size: 330%;
+ color: #ffffff;
+ z-index: = 10000;
+}
+#h3{
+ font-family: Times New Roman;
+ font-size: 150%;
+ margin-left:32%;
+ color: #b3b3b3;
+ z-index: = 10000;
+}
+
+.form-horizontal{
+  margin-left:12%;
+  margin-top:4%;
+}
+
+#fundo2{
+  position: absolute;
+  top: 0px;
+  z-index: 0;
+  height: 90% ; 
+  width:50% ;
+  border-radius: 1%;
+  background-color: #1a1a1a;
+  margin-left:25%;
+  margin-top:0%;
+}
+.itens{
+  position: relative;
+  top: 4%;
+  z-index: = 10000;
+}
+.col-sm-2{
+  color:#ffffff;
+}
+.checkbox{
+  color: #b3b3b3;
+}
+
+  </style>
+  <body>
+
+    <div id="fundo2">  
+      <h2 id="H2">Sistema de salas</h2>
+      <h3 id="h3">Cadastro de um novo usuário</h2>
+        <div class="itens">
+          <form action="Cadastrobd.php" method="POST" class="form-horizontal">
+            
+            <div class="form-group">
+              <label for="Codigo" class="col-sm-2 control-label">Código</label>
+              <div class="col-sm-8">
+                <input type="text" name ="Codigo" class="form-control" id="Codigo" placeholder="Código" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Nome" class="col-sm-2 control-label">Nome</label>
+              <div class="col-sm-8">
+                <input type="text" name ="Nome" class="form-control" id="Nome" placeholder="Nome" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Email" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-8">
+                <input type="email" name ="Email" class="form-control" id="Email" placeholder="Email" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Departamento" class="col-sm-2 control-label">Departamento</label>
+              <div class="col-sm-8">
+                <input type="text" name ="Departamento" class="form-control" id="Departamento" placeholder="Departamento" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Tipo" class="col-sm-2 control-label">Tipo</label>
+              <div class="col-sm-8">
+                <input type="text" name ="Tipo" class="form-control" id="Tipo" placeholder="Tipo de usuário" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Key" class="col-sm-2 control-label">Key</label>
+              <div class="col-sm-8">
+                <input type="text" name ="Key" class="form-control" id="Key" placeholder="Chave do cartão" >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Senha" class="col-sm-2 control-label">Senha</label>
+              <div class="col-sm-8">
+                <input type="password" name="Senha" class="form-control" id="Senha" placeholder="Senha">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+               <button type="submit" value="Cadastrar" class="btn btn-default">Cadastrar</button>
+             </div>
+           </div>
+
+         </form>
+       </div>
+     </div>
+
+   </body>
+   </html>
