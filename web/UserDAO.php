@@ -25,7 +25,7 @@
 			//Insere os Usuários na tabela de usuário
 			$sqltb= "INSERT INTO USUARIO VALUES ($COD_USUARIO,'$NOME_USUARIO','$EMAIL_USUARIO','$SIGLA_DEPARTAMENTO','$TIPO_USUARIO','$KEY_USER')";
 			//Cria o usuário no banco
-			$sqluser="CREATE USER 'a$COD_USUARIO'@'localhost' IDENTIFIED BY '$KEY_USER'";
+			$sqluser="CREATE USER 'a$COD_USUARIO'@'localhost' IDENTIFIED BY '$USUARIO_SENHA'";
 			//Cria a visão do usuário no banco, Mysql zoado salva a visão como um tabela wtf
 			$sqlview="CREATE VIEW a$COD_USUARIO"."view AS SELECT * FROM USUARIO WHERE COD_USUARIO='$COD_USUARIO'";
 			//Concede permição de select e update na visão para o usuário
@@ -44,7 +44,9 @@
 		}
 
 	}
-
-		$obj = new UserDAO("localhost","root","","roomz");
-		//$obj->insereUsuario(12,"GABRIEL","EMAIL@MAIL.COM","DACOM","ALUNO","12","0000");		
+		//$obj=new UserDAO("localhost","root","","roomz");
+		//$obj->insereUsuario(12,"GABRIEL","EMAIL@MAIL.COM","DACOM","ALUNO","12","0000");
+		
+		$obj = new UserDAO("localhost",$_POST['Codigo'],$_POST['Senha'],"roomz");
+				
 	?>

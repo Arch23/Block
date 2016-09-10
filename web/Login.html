@@ -76,7 +76,7 @@ a:hover , a:active {
 		<h2 id="H2">Sistema de salas</h2>
 		<h3 id="h3">Digite seus dados</h2>
 			<div class="itens">
-				<form action="Loginbd.php" method="POST" class="form-horizontal">
+				<form action= "UserDAO.php" method="POST" class="form-horizontal">
 					<div class="form-group">
 						<label for="Codigo" class="col-sm-2 control-label">Código</label>
 						<div class="col-sm-8">
@@ -107,5 +107,10 @@ a:hover , a:active {
 				</form>
 			</div>
 		</div>
+		<?php
+		if(isset($_POST["botao"]){
+     	echo "botão foi clicado";
+		}
+		?>
 	</body>
 	</html>
