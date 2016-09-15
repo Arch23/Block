@@ -1,5 +1,5 @@
 	<?php
-		include("UserDAO.php");
+		include("../model/UserDAO.php");
                 session_start();
 		$obj= new UserDAO("localhost","a".$_POST['Codigo'],$_POST['Senha'],"roomz");
 		if(!$obj->conn->connect_error){
@@ -8,6 +8,6 @@
 			header("Location:ReservaController.php");                       
 			exit();
 		}
-		 echo "<script type=\"text/javascript\">alert('Usuário ou senha inválidos');location.href='Login.html';</script>";
+		 echo "<script type=\"text/javascript\">alert('Usuário ou senha inválidos');location.href='../index.html';</script>";
 		 
 	?>

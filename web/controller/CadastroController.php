@@ -1,8 +1,8 @@
 <?php
-    include("UserDAO.php");    
+    include("../model/UserDAO.php");    
     $obj= new UserDAO("localhost","root","","roomz");
     if($obj->conn->connect_error){
-        header("Cadastrar.html");
+        header("../view/Cadastrar.html");
     }
     
     $COD_USUARIO=$_POST['Codigo'];
@@ -15,15 +15,15 @@
     
     if($obj->insereUsuario($COD_USUARIO, $NOME_USUARIO, $EMAIL_USUARIO, $SIGLA_DEPARTAMENTO,
            $TIPO_USUARIO, $KEY_USER, $USUARIO_SENHA)==1){
-         echo "<script type=\"text/javascript\">alert('Usuário Criado com sucesso!');location.href='Cadastrar.html';</script>";
+         echo "<script type=\"text/javascript\">alert('Usuário Criado com sucesso!');location.href='../index.html';</script>";
     }
     else if($obj->insereUsuario($COD_USUARIO, $NOME_USUARIO, $EMAIL_USUARIO, $SIGLA_DEPARTAMENTO,
            $TIPO_USUARIO, $KEY_USER, $USUARIO_SENHA)==2){
-           echo "<script type=\"text/javascript\">alert('Usuário já cadastrado!');location.href='Cadastrar.html';</script>";
+           echo "<script type=\"text/javascript\">alert('Usuário já cadastrado!');location.href='../view/Cadastrar.html';</script>";
            exit();
      }
            else{
-                echo "<script type=\"text/javascript\">alert('Erro ao criar usuário!');location.href='Cadastrar.html';</script>";
+                echo "<script type=\"text/javascript\">alert('Erro ao criar usuário!');location.href='../view/Cadastrar.html';</script>";
             }
    
 ?>
