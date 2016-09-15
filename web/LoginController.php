@@ -1,12 +1,13 @@
 	<?php
 		include("UserDAO.php");
-	
-		$obj= new UserDAO();	
-		$conn=$obj->conectaBanco("localhost",$_POST['Codigo'],$_POST['Senha'],"roomz");
-		if(!$conn->connect_error){
-			header("Location:Reservar.html");
+                session_start();
+		$obj= new UserDAO("localhost","a".$_POST['Codigo'],$_POST['Senha'],"roomz");
+		if(!$obj->conn->connect_error){
+                        $_SESSION["usuario"]="a".$_POST['Codigo'];
+                        $_SESSION["senha"]=$_POST['Senha'];
+			header("Location:ReservaController.php");                       
 			exit();
 		}
-		 echo "<script type=\"text/javascript\">alert('Usuário ou senha inválidos');location.href='Login.php';</script>";
+		 echo "<script type=\"text/javascript\">alert('Usuário ou senha inválidos');location.href='Login.html';</script>";
 		 
 	?>

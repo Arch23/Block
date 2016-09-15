@@ -1,16 +1,25 @@
 <?php
 	class UserDAO{
-		public $conn;	
+                public $conn;
+                public $username;
 
 		function conectaBanco($servername,$username,$password,$dbname){
-			$conn = new mysqli($servername, $username, $password,$dbname);
-                        $this->conn=$conn;
+			$conn = new mysqli($servername, $username, $password,$dbname);                       
 			return $conn;
 		}
+                
+                function __construct($servername,$username,$password,$dbname) {
+                    $this->conn=$this->conectaBanco($servername,$username,$password,$dbname);
+                    $this->username=$username;
+                }
 
 		//Fazer oo Login através do construtor, se for utilizar o root passar como parametros "localhost","root","sua senha do banco","roomz
 
 		function insereUsuario($COD_USUARIO,$NOME_USUARIO,$EMAIL_USUARIO,$SIGLA_DEPARTAMENTO,$TIPO_USUARIO,$KEY_USER,$USUARIO_SENHA){
+                        $result=$this->conn->query("SELECT COD_USUARIO FROM USUARIO WHERE COD_USUARIO=$COD_USUARIO");                       
+                        if($result->num_rows >0){
+                             return 2;
+                        }                     
 			//Insere os Usuários na tabela de usuário
 			$sqltb= "INSERT INTO USUARIO VALUES ($COD_USUARIO,'$NOME_USUARIO','$EMAIL_USUARIO','$SIGLA_DEPARTAMENTO','$TIPO_USUARIO','$KEY_USER')";
 			//Cria o usuário no banco
@@ -35,6 +44,10 @@
                         
     			}
 		}
+                function selectUser(){
+                    $result=$this->conn->query("SELECT * FROM $this->username"."view");
+                    return $result;                    
+                }               
 
 	}				
 	?>
