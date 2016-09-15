@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Roboto'; /*a name to be used later*/
+    src: url('../fonts/Roboto-Condensed.ttf'); /*URL to font*/
+}
+
+body {
+   font-family: 'Roboto';
+}

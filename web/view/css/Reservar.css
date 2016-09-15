@@ -1,0 +1,19 @@
+body{
+  background-color:#99ffeb;
+}
+.page-header{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.caixa1{
+   position: absolute;
+  top: 0px;
+  z-index: 0;
+  height: 80% ;
+  width:60% ;
+  border-radius: 1%;
+  background-color: #525252;
+  margin-left:20%;
+  margin-top:10%;
+  margin-bottom: 2%;
+}
