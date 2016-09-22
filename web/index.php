@@ -9,6 +9,27 @@
    <link rel="stylesheet" type="text/css" href="./view/css/index.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+	function gotoLogin(){
+		$(document).ready(function(){
+      	  $.post("controller/LoginController.php",
+       		 {
+        	    Codigo: $("#Codigo").val(),
+          		Senha:  $("#Senha").val()
+        	},
+        	function(data,status){
+        		if(data.search("nao")>0){
+        			alert("Usuário ou Senha Inválidos!");
+        		}
+        		else{
+        		//	alert("Prossiga com login");
+        			location.href="view/Reservar.html";
+        		}
+       		 });	
+        	
+		});
+	}
+	</script>
 </head>
 <body>
 
@@ -16,7 +37,7 @@
 		<h2 id="H2">Sistema de salas</h2>
 		<h3 id="h3">Digite seus dados</h2>
 			<div class="itens">
-				<form action= "controller/LoginController.php" method="POST" class="form-horizontal">
+				<form onsubmit="gotoLogin();return false;" id="target" class="form-horizontal">
 					<div class="form-group">
 						<label for="Codigo" class="col-sm-2 control-label">Código</label>
 						<div class="col-sm-8">
