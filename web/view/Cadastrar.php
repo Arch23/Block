@@ -9,13 +9,42 @@
    <link rel="stylesheet" type="text/css" href="./css/Cadastrar.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script>
+  function gotoCadastro(){
+    $(document).ready(function(){
+          $.post("../controller/CadastroController.php",
+           {
+              Codigo: $("#Codigo").val(),
+              Nome:   $("#Nome").val(),
+              Email:  $("#Email").val(),
+              Departamento: $("#Departamento").val(),
+              Tipo:   $("#Tipo").val(),
+              Key:    $("#Key").val(),   
+              Senha:  $("#Senha").val()
+          },
+          function(data,status){
+            if(data.search("criado")>=0){
+              alert("Usuário Já Existente!");
+            }
+            else if(data.search("sucesso")>=0){
+              alert("Usuário Criado com Suceso!");
+              location.href="../index.php";
+            }else{
+              alert("Erro ao criar usuário verifique seus dados e tente novamente!");
+            }
+           });  
+          
+    });
+  }
+  </script>
+  
 </head>
 <body>
    <div id="fundo2">
       <h2 id="H2">Sistema de salas</h2>
       <h3 id="h3">Cadastro de um novo usuário</h2>
          <div class="itens">
-            <form action="../controller/CadastroController.php" method="POST" class="form-horizontal">
+            <form onsubmit="gotoCadastro();return false;" id="target" class="form-horizontal">
 
                <div class="form-group">
                   <label for="Codigo" class="col-sm-2 control-label">Código</label>
@@ -69,7 +98,7 @@
                <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                      <button type="submit" value="Cadastrar" class="btn btn-default">Cadastrar</button>
-                     <a class="btn btn-default" href="../index.html" role="button">Login</a>
+                     <a class="btn btn-default" href="../index.php" role="button">Login</a>
                   </div>
                </div>            
             </form>

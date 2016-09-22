@@ -2,7 +2,7 @@
     include("../model/UserDAO.php");    
     $obj= new UserDAO("localhost","root","","roomz");
     if($obj->conn->connect_error){
-        header("../view/Cadastrar.html");
+        //header("../view/Cadastrar.html");
     }
     
     $COD_USUARIO=$_POST['Codigo'];
@@ -15,15 +15,17 @@
     
     if($obj->insereUsuario($COD_USUARIO, $NOME_USUARIO, $EMAIL_USUARIO, $SIGLA_DEPARTAMENTO,
            $TIPO_USUARIO, $KEY_USER, $USUARIO_SENHA)==1){
-         echo "<script type=\"text/javascript\">alert('Usuário Criado com sucesso!');location.href='../index.html';</script>";
+         echo "sucesso";
+        exit();
     }
     else if($obj->insereUsuario($COD_USUARIO, $NOME_USUARIO, $EMAIL_USUARIO, $SIGLA_DEPARTAMENTO,
-           $TIPO_USUARIO, $KEY_USER, $USUARIO_SENHA)==2){
-           echo "<script type=\"text/javascript\">alert('Usuário já cadastrado!');location.href='../view/Cadastrar.html';</script>";
-           exit();
+      $TIPO_USUARIO, $KEY_USER, $USUARIO_SENHA)==2){
+      echo "criado";
+      exit();
      }
-           else{
-                echo "<script type=\"text/javascript\">alert('Erro ao criar usuário!');location.href='../view/Cadastrar.html';</script>";
-            }
+     else{
+       echo "erro";
+       exit();
+    }
    
 ?>

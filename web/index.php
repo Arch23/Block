@@ -22,7 +22,7 @@
         			alert("Usuário ou Senha Inválidos!");
         		}
         		else{
-        		//	alert("Prossiga com login");
+        		    //alert("Prossiga com login");
         			location.href="view/Reservar.html";
         		}
        		 });	
@@ -62,7 +62,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="submit" value="Entrar" class="btn btn-default">Entrar</button>
-							<a class="btn btn-default" href="view/Cadastrar.html" role="button">Cadastrar</a>
+							<a class="btn btn-default" href="view/Cadastrar.php" role="button">Cadastrar</a>
 						</div>
 					</div>
 				</form>
