@@ -9,6 +9,34 @@
   <link rel="stylesheet" type="text/css" href="./css/Consultar.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./jquery/jquery.click-calendario-1.0-min.js"></script>
+  <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
+  <script>
+   $(document).ready(function(){
+      $('#calendar').focus(function(){
+         $(this).calendario({
+            target:'#calendar'
+         });
+      });
+   });
+   </script>
+    <script>
+     $(document).ready(function(){ 
+    $('#Bloco').change(function(){ 
+    $(document).ready(function(){
+          $.post("../controller/ReservaController.php",
+           {
+              Tag: 1,
+              Bloco: $("#Bloco option:selected").text(),
+          },
+          function(data,status){
+            document.getElementById("Salas").innerHTML = data;
+           });
+    });
+  });
+});
+  </script>
+
 </head>
 <body>
   <!--BARRA DE NAVEGAÇÃO-->
@@ -19,8 +47,8 @@
      </div>
      <ul class="nav navbar-nav">
        <li><a href="Home.html">Home</a></li>
-       <li><a href="Reservar.html">Reservar</a></li>
-       <li class="active"><a href="Consultar.html">Consultar</a></li>
+       <li><a href="Reservar.php">Reservar</a></li>
+       <li class="active"><a href="Consultar.php">Consultar</a></li>
        <li><a href="Historico.html">Histórico</a></li>
      </ul>
 
@@ -49,17 +77,15 @@
           include("../model/ReservaDAO.php");
           $obj=new ReservaDAO();
           $obj->retornaBlocos();
-        //  echo "<html><option value="volvo" class="dropdown-contet">Volvo</option></html>";
         ?>    
       </select>
    </div>
    <div class="blocks">
       <h5 class="sub-h">Sala: </h5>
-      <select class="dropdown-list">
-         <option value="volvo" class="dropdown-contet">Volvo</option>
-         <option value="saab" class="dropdown-contet">Saab</option>
-         <option value="mercedes" class="dropdown-contet">Mercedes</option>
-         <option value="audi" class="dropdown-contet">Audi</option>
+      <select id="Salas" class="dropdown-list">
+        <?php
+        $obj->retornaSalas("teste1");
+        ?>
       </select>      
    </div>
    <div class="blocks">

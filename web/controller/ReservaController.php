@@ -12,8 +12,7 @@ include("../model/ReservaDAO.php");
 
 
    if($_POST["Tag"]==1){
-   	  	include("../model/ReservaDAO.php");
         $obj=new ReservaDAO();
-        $obj->retornaSalas($_)
+        $obj->retornaSalas($_POST["Bloco"]);
 	}
 ?>

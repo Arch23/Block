@@ -24,7 +24,6 @@
     <script>
      $(document).ready(function(){ 
     $('#Bloco').change(function(){ 
-    alert($('#Bloco option:selected').text());
     $(document).ready(function(){
           $.post("../controller/ReservaController.php",
            {
@@ -32,7 +31,7 @@
               Bloco: $("#Bloco option:selected").text(),
           },
           function(data,status){
-            alert(data);
+            document.getElementById("Salas").innerHTML = data;
            });
     });
   });
@@ -50,7 +49,7 @@
      <ul class="nav navbar-nav">
        <li><a href="Home.html">Home</a></li>
        <li class="active"><a href="Reservar.html">Reservar</a></li>
-       <li><a href="Consultar.html">Consultar</a></li>
+       <li><a href="Consultar.php">Consultar</a></li>
        <li><a href="Historico.html">Histórico</a></li>
      </ul>
 
@@ -80,17 +79,15 @@
           include("../model/ReservaDAO.php");
           $obj=new ReservaDAO();
           $obj->retornaBlocos();
-        //  echo "<html><option value="volvo" class="dropdown-contet">Volvo</option></html>";
         ?>    
       </select>
    </div>
    <div class="blocks">
       <h5 class="sub-h">Sala: </h5>
-      <select class="dropdown-list">
-         <option value="volvo" class="dropdown-contet">Volvo</option>
-         <option value="saab" class="dropdown-contet">Saab</option>
-         <option value="mercedes" class="dropdown-contet">Mercedes</option>
-         <option value="audi" class="dropdown-contet">Audi</option>
+      <select id="Salas" class="dropdown-list">
+        <?php
+        $obj->retornaSalas("teste1");
+        ?>
       </select>      
    </div>
    <div class="blocks">

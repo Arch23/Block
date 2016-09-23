@@ -22,12 +22,13 @@
 		}
 
 		function retornaSalas($Bloco){
-			$sql="SELECT ID_SALA,ID_ANDAR FROM SALA, BLOCO WHERE SALA.ID_BLOCO=BLOCO.ID_BLOCO AND $Bloco=BLOCO.NOME_BLOCO";
+			$sql="SELECT ID_SALA,ID_ANDAR FROM SALA, BLOCO WHERE SALA.ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO";
+			$result=$this->conn->query($sql);
 				while($row = $result->fetch_assoc()) {
-       				 echo '<option value="'.$row["ID_ANDAR"].$row["ID_SALA"].'" class="dropdown-contet">'.$row["NOME_BLOCO"].'</option>';
-    			}
-
-	}
+     				 echo '<option value="'.$row["ID_ANDAR"].$row["ID_SALA"].'" class="dropdown-contet">'.$row["ID_ANDAR"].$row["ID_SALA"].'</option>';
+    			}	
+		}
+	
 }
 
 ?>
