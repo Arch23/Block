@@ -6,7 +6,7 @@
   <meta  content="width=970px, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./css/common.css">
-  <link rel="stylesheet" type="text/css" href="./css/Historico.css">
+  <link rel="stylesheet" type="text/css" href="./css/Consultar.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -40,23 +40,233 @@
   </div>
 </nav><!--  FIM  BARRA DE NAVEGAÇÃO-->
 
-
-<div class="col-sm-8 text-left">
-  <h1>Welcome</h1>
-  <p>ALGUMA COISA</p>
-  <hr>
-  <h3>Test</h3>
-  <p>MAIS COISA...</p>
+<div class="fundo3">
+   <h3 class="h3">Consulta de Horários</h3>
+   <div class="blocks">
+      <h5 class="sub-h">Bloco: </h5>
+      <select id="Bloco" class="dropdown-list">    
+         <?php
+          include("../model/ReservaDAO.php");
+          $obj=new ReservaDAO();
+          $obj->retornaBlocos();
+        //  echo "<html><option value="volvo" class="dropdown-contet">Volvo</option></html>";
+        ?>    
+      </select>
+   </div>
+   <div class="blocks">
+      <h5 class="sub-h">Sala: </h5>
+      <select class="dropdown-list">
+         <option value="volvo" class="dropdown-contet">Volvo</option>
+         <option value="saab" class="dropdown-contet">Saab</option>
+         <option value="mercedes" class="dropdown-contet">Mercedes</option>
+         <option value="audi" class="dropdown-contet">Audi</option>
+      </select>      
+   </div>
+   <div class="blocks">
+         <h5 class="sub-h">Data: </h5>
+         <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10"/>
+      </div>
+      <div class="clearfix"> </div>
+      <table class="tg">
+         <tr>
+            <th class="tg-baqh"></th>
+            <th class="tg-yw4l">Início</th>
+            <th class="tg-yw4l">Término</th>
+            <th class="tg-yw4l">Segunda</th>
+            <th class="tg-yw4l">Terça</th>
+            <th class="tg-yw4l">Quarta</th>
+            <th class="tg-yw4l">Quinta</th>
+            <th class="tg-yw4l">Sexta</th>
+            <th class="tg-yw4l">Sábado</th>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">M1</td>
+            <td class="tg-yw4l">07h30</td>
+            <td class="tg-yw4l">08h20</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">M2</td>
+            <td class="tg-yw4l">08h20</td>
+            <td class="tg-yw4l">09h10</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">M3</td>
+            <td class="tg-yw4l">09h10</td>
+            <td class="tg-yw4l">10h00</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">M4</td>
+            <td class="tg-yw4l">10h20</td>
+            <td class="tg-yw4l">11h10</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">M5</td>
+            <td class="tg-yw4l">11h10</td>
+            <td class="tg-yw4l">12h00</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">M6</td>
+            <td class="tg-yw4l">12h00</td>
+            <td class="tg-yw4l">12h50</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">T1</td>
+            <td class="tg-yw4l">13h00</td>
+            <td class="tg-yw4l">13h50</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">T2</td>
+            <td class="tg-yw4l">13h50</td>
+            <td class="tg-yw4l">14h40</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">T3</td>
+            <td class="tg-yw4l">14h40</td>
+            <td class="tg-yw4l">15h30</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">T4</td>
+            <td class="tg-yw4l">15h50</td>
+            <td class="tg-yw4l">16h40</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">T5</td>
+            <td class="tg-yw4l">16h40</td>
+            <td class="tg-yw4l">17h30</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">T6</td>
+            <td class="tg-yw4l">17h50</td>
+            <td class="tg-yw4l">18h40</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">N1</td>
+            <td class="tg-yw4l">18h40</td>
+            <td class="tg-yw4l">19h30</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">N2</td>
+            <td class="tg-yw4l">19h30</td>
+            <td class="tg-yw4l">20h20</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">N3</td>
+            <td class="tg-yw4l">20h20</td>
+            <td class="tg-yw4l">21h10</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">N4</td>
+            <td class="tg-yw4l">21h20</td>
+            <td class="tg-yw4l">22h10</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+         <tr>
+            <td class="tg-yw4l">N5</td>
+            <td class="tg-yw4l">22h10</td>
+            <td class="tg-yw4l">22h00</td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+            <td class="tg-yw4l"></td>
+         </tr>
+      </table>
 </div>
-
-  <div class="caixa1">
-        <h1>Titulo da parada</h1>
-        <p>Uma explicação .. eu acho </p>
-  </div>
-<!--
-  <div class="page-header">
-        <h1>Atualiações</h1>
-  </div>
--->
 </body>
 </html>
