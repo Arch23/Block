@@ -18,6 +18,10 @@
    margin-left: 5%;
 }
 
+.calendar{
+   border-radius: 5px;
+   height: 5%;
+}
 .sub-h{
    color: #ffffff;
    font-size: 2em;
