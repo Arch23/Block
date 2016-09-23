@@ -25,17 +25,17 @@
         		    //alert("Prossiga com login");
         			location.href="view/Reservar.html";
         		}
-       		 });	
-        	
+       		 });
+
 		});
 	}
 	</script>
 </head>
 <body>
 
-	<div id="fundo2">
-		<h2 id="H2">Sistema de salas</h2>
-		<h3 id="h3">Digite seus dados</h2>
+	<div class="fundo2">
+		<h2 class="h2">Sistema de salas</h2>
+		<h3 class="h3">Digite seus dados</h2>
 			<div class="itens">
 				<form onsubmit="gotoLogin();return false;" id="target" class="form-horizontal">
 					<div class="form-group">

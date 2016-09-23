@@ -7,3 +7,30 @@ body {
    font-family: 'Roboto';
    background-color: #775CB9;
 }
+
+.h2{
+ margin-left:28%;
+ margin-top:5%;
+ font-size: 330%;
+ color: #ffffff;
+ z-index: = 10000;
+}
+
+.h3{
+ font-size: 150%;
+ margin-left:32%;
+ color: #b3b3b3;
+ z-index: = 10000;
+}
+
+.fundo2{
+  position: absolute;
+  top: 0px;
+  z-index: 0;
+  height: 90% ;
+  width:50% ;
+  border-radius: 1%;
+  background-color: #1a1a1a;
+  margin-left:25%;
+  margin-top:0%;
+}

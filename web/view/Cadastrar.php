@@ -19,7 +19,7 @@
               Email:  $("#Email").val(),
               Departamento: $("#Departamento").val(),
               Tipo:   $("#Tipo").val(),
-              Key:    $("#Key").val(),   
+              Key:    $("#Key").val(),
               Senha:  $("#Senha").val()
           },
           function(data,status){
@@ -32,17 +32,17 @@
             }else{
               alert("Erro ao criar usuário verifique seus dados e tente novamente!");
             }
-           });  
-          
+           });
+
     });
   }
   </script>
-  
+
 </head>
 <body>
-   <div id="fundo2">
-      <h2 id="H2">Sistema de salas</h2>
-      <h3 id="h3">Cadastro de um novo usuário</h2>
+   <div class="fundo2">
+      <h2 class="h2">Sistema de salas</h2>
+      <h3 class="h3">Cadastro de um novo usuário</h2>
          <div class="itens">
             <form onsubmit="gotoCadastro();return false;" id="target" class="form-horizontal">
 
@@ -100,7 +100,7 @@
                      <button type="submit" value="Cadastrar" class="btn btn-default">Cadastrar</button>
                      <a class="btn btn-default" href="../index.php" role="button">Login</a>
                   </div>
-               </div>            
+               </div>
             </form>
          </div>
       </div>
