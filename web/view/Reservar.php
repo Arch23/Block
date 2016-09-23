@@ -72,6 +72,12 @@
          <option value="saab" class="dropdown-contet">Saab</option>
          <option value="mercedes" class="dropdown-contet">Mercedes</option>
          <option value="audi" class="dropdown-contet">Audi</option>
+      </select>      
+   </div>
+   <div class="blocks">
+         <h5 class="sub-h">Data: </h5>
+         <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10"/>
+      </div>
 </div>
 
 <!--
