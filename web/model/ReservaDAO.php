@@ -1,8 +1,28 @@
 <?php
+	
+	class  ReservaDAO{
+		public $conn;
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+		function __construct(){
+			$servername="localhost";
+			$username="root";
+			$password="";
+			$dbname="roomz";
 
+			$this->conn = new mysqli($servername, $username, $password,$dbname);                 
+
+		}
+
+		function retornaBlocos(){
+				$sql="SELECT NOME_BLOCO FROM BLOCO";
+				$result=$this->conn->query($sql);
+				while($row = $result->fetch_assoc()) {
+       				 echo '<option value="'.$row["NOME_BLOCO"].'" class="dropdown-contet">'.$row["NOME_BLOCO"].'</option>';
+    			}
+
+		}
+
+	}
+
+
+?>
