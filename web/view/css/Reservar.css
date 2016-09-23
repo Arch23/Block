@@ -3,15 +3,41 @@
   margin-left: 100px;
   margin-right: 100px;
 }
-.caixa1{
-   position: absolute;
-  top: 0px;
-  z-index: 0;
-  height: 80% ;
-  width:60% ;
-  border-radius: 1%;
-  background-color: #525252;
-  margin-left:20%;
-  margin-top:10%;
-  margin-bottom: 2%;
+
+.h3{
+   padding-top: 10px;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+   color: #ffffff;
+   font-size: 330%;
+}
+
+.blocks{
+   float: left;
+   margin-left: 5%;
+}
+
+.sub-h{
+   color: #ffffff;
+   font-size: 2em;
+   text-align: left;
+}
+
+.dropdown-list{
+   border-radius: 5px;
+
+}
+
+.dropdown-content{
+   color: #000000;
+}
+
+.fundo3{
+   position: relative;
+   background-color: #1a1a1a;
+   width: 80%;
+   height: 500px ;
+   margin: auto;
+   border-radius: 10px;
 }
