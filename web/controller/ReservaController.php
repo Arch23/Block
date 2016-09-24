@@ -8,11 +8,20 @@ include("../model/ReservaDAO.php");
  */   
    session_start();
    $obj=new UserDAO("localhost",$_SESSION["usuario"],$_SESSION["senha"],"roomz");
-   //header("Location:../view/Reservar.html");
 
+	$bloco=$_POST["Bloco"];
+	$datadia=$_POST["Datadia"];
+	$sala=$_POST["Sala"];
+	$andar=substr($sala,0,1);
+	$salaid=substr($sala,1,1);	
+	$obj=new ReservaDAO();
 
    if($_POST["Tag"]==1){
-        $obj=new ReservaDAO();
+
         $obj->retornaSalas($_POST["Bloco"]);
+	}
+
+	if($_POST["Tag"]==2){
+        $obj->retornaReservaNormal($bloco,$andar,$salaid,$datadia);
 	}
 ?>

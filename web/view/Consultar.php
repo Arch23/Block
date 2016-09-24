@@ -109,7 +109,10 @@
          <button type="button" onclick="gotoConsulta();return false;">Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
-      <table id="Tabela" class="tg">       
+      <table id="Tabela" class="tg">
+      <?php
+      $obj->retornaReservaNormal("BLOCO 1",1,1,date("d-m-Y"));
+      ?>       
       </table>
 </div>
 </body>

@@ -101,7 +101,7 @@
 									$Resultf=$this->conn->query($sqlf);
 
 									if(($Result->num_rows==0) && ($Resultf->num_rows==0)){								
-									echo '<td style="color:blue;" class="tg-yw4l">DISPONÍVEL</td>';
+									echo '<td style="color:blue;" id="'.$letra.$j.$k.'" class="tg-yw4l">DISPONÍVEL</td>';
 									}else{
 									echo '<td style="color:red;" class="tg-yw4l">INDISPONÍVEL</td>';	
 						
