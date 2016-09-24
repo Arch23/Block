@@ -48,7 +48,7 @@
      </div>
      <ul class="nav navbar-nav">
        <li><a href="Home.html">Home</a></li>
-       <li class="active"><a href="Reservar.html">Reservar</a></li>
+       <li class="active"><a href="Reservar.php">Reservar</a></li>
        <li><a href="Consultar.php">Consultar</a></li>
        <li><a href="Historico.html">Histórico</a></li>
      </ul>
@@ -86,7 +86,7 @@
       <h5 class="sub-h">Sala: </h5>
       <select id="Salas" class="dropdown-list">
         <?php
-        $obj->retornaSalas("teste1");
+        $obj->retornaSalas("BLOCO 1");
         ?>
       </select>      
    </div>
