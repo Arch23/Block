@@ -76,7 +76,7 @@
           <li><a href="Ajuda.html">Ajuda</a></li>
           <!--<li><a href="#">OPÇÃO DE LINK 2</a></li>-->
           <li role="separator" class="divider"></li>
-          <li><a href="Login.html">Sair</a></li>
+          <li><a href="../controller/SairController.php">Sair</a></li>
         </ul>
       </li>
     </ul>
