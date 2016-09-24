@@ -32,7 +32,6 @@
           },
           function(data,status){
             document.getElementById("Salas").innerHTML = data;
-            alert(data);
            });
     });
   });

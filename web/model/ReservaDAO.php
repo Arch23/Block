@@ -92,12 +92,19 @@
 							for($k=0 ;$k<6; $k++){
 								$date = strtotime("+"."$k"."days", strtotime($datefix));
 								$date= date("Y-m-d", $date);		
-				$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA_NORMAL, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND SALA_ID_SALA=$Sala AND SALA_ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
+
+								$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA_NORMAL, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND SALA_ID_SALA=$Sala AND SALA_ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
+
+								$sqlf="SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA=$Sala AND ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
+
 									$Result=$this->conn->query($sql);
-									if($Result->num_rows==0){								
-									echo '<td class="tg-yw4l">DISPONÍVEL</td>';
+									$Resultf=$this->conn->query($sqlf);
+
+									if(($Result->num_rows==0) && ($Resultf->num_rows==0)){								
+									echo '<td style="color:blue;" class="tg-yw4l">DISPONÍVEL</td>';
 									}else{
-									echo '<td class="tg-yw4l">INDISPONÍVEL</td>';	
+									echo '<td style="color:red;" class="tg-yw4l">INDISPONÍVEL</td>';	
+						
 									}																			
 						
 					}
