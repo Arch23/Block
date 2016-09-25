@@ -28,6 +28,17 @@ session_start();
             target:'#calendar'
          });
       });
+      var dt= new Date();
+      var ano=dt.getFullYear();
+      var dia=dt.getDate();
+      if(dia<10){
+        dia= "0"+dia;
+      }
+      var mes=dt.getMonth()+1;
+      if(mes<10){
+        mes= "0"+mes;
+      }
+      document.getElementById("calendar").value = dia +"/" + mes+ "/"+ ano;
    });
    </script>   
     <script>
@@ -57,59 +68,16 @@ session_start();
               Datadia: $("#calendar").val()
           },
           function(data,status){
-            $("#Tabela").dataTable().fnDestroy();
-            document.getElementById("Tabela").innerHTML = data;
-             $(document).ready(function() {
-                var table = $('#Tabela').DataTable( {
-                   dom: 'Bfrtip',
-                   select:{
-                      style: 'os',
-                      items: 'cell'
-                    },
-                    "iDisplayLength":50,
-                 buttons: [
-                          {
-                            text: 'Reservar',
-                            action: function () {
-                            var reserv = table.cells( { selected: true } ).data();
-                            var i=0;
-                            var dadosreserv=[];
-                            for(i=0;i<reserv.length;i++){
-                            dadosreserv.push(reserv[i]);                      
-                            }
-                            var st = JSON.stringify(dadosreserv);
-                               $.post("../controller/ReservaController.php",
-                               {
-                                   Tag: 3,
-                                   dadosreserv: st,
-                                    Bloco: $("#Bloco option:selected").text(),
-                                    Sala:  $("#Salas option:selected").text()
-                                },
-                               function(data,status){
-                                alert(data);
-                                $.post("../controller/ReservaController.php",
-                                {
-                                 Bloco: $("#Bloco option:selected").text(),
-                                 Sala:  $("#Salas option:selected").text(),
-                                 Datadia: $("#calendar").val(),
-                                 Tag:2
-                                },
-                                function(data,status){
-                               document.getElementById("Tabela").innerHTML = data;
-                               });
-                               });   
-                               
-                          }
-                  }
-                ]
-                } );
-             } );
+             document.getElementById("Tabela").innerHTML = data;
+             carregaTabela();
            });
        });
   }
   </script>
   <script>
+  function carregaTabela(){
   $(document).ready(function() {
+    $("#Tabela").dataTable().fnDestroy();
     var table = $('#Tabela').DataTable( {
         dom: 'Bfrtip',
         select:{
@@ -131,19 +99,22 @@ session_start();
                        $.post("../controller/ReservaController.php",
                                {
                                    Tag: 3,
-                                   dadosreserv: st,
+                                    dadosreserv: st,
                                     Bloco: $("#Bloco option:selected").text(),
                                     Sala:  $("#Salas option:selected").text()
                                 },
-                               function(data,status){
+                               function(data,status){                               
                                 alert(data);
-                               });   
+                               });
+                               gotoConsulta();   
                 }
             }
         ]
     } );
   } );
-  </script>
+}
+carregaTabela();
+</script>
  
 </head>
 <body>
@@ -199,14 +170,14 @@ session_start();
    </div>
    <div class="blocks">
          <h5 class="sub-h">Data: </h5>
-         <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10"/>
+         <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10" value/>
            <button type="button" onclick="gotoConsulta();return false;">Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
       <table id="Tabela" class="display">
           <?php
           $coduser=$_SESSION["usuario"];
-          $obj->retornaReservaNormal("BLOCO 1",1,1,date("d-m-Y"),"$coduser");
+          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d")-1)."/".date("m")."/".date("Y"),$coduser);
           ?>   
       </table>      
 </div>
