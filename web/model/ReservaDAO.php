@@ -148,8 +148,9 @@
 			 		 $hor=substr($value, 0,2);
 			    	 $data=substr($value,2,11);
 			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')";
-			     	 $this->conn->query($sql);
+			     	 if($this->conn->query($sql)){
 			     	 echo($hor.$data."\n");
+			     	}
 
 			 	}
 		}

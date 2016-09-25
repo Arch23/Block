@@ -79,9 +79,13 @@ session_start();
   $(document).ready(function() {
     $("#Tabela").dataTable().fnDestroy();
     var table = $('#Tabela').DataTable( {
-        dom: 'Bfrtip',
+        dom: 'frtipB',
+        ordering: false,
+        paginate: false,
+        bFilter:false,
+        bInfo:false,
         select:{
-          style: 'os',
+          style: 'multi',
           items: 'cell'
         },
          "iDisplayLength":50,
