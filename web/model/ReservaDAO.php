@@ -1,16 +1,16 @@
 <?php
 	
-	class  ReservaDAO{
-		public $conn;
+	class  ReservaDAO{ //Classe para controle das reservas
+		public $conn; //Conexão do usuário
 
-		function __construct($username,$password){
+		function __construct($username,$password){ //Passa username e senha do usuário quando a classe for instanciada
 			$servername="localhost";
 			$dbname="roomz";
-			$this->conn = new mysqli($servername, $username, $password,$dbname);                 
+			$this->conn = new mysqli($servername, $username, $password,$dbname); //Cria a conexão do usuário dentro da classe                 
 
 		}
 
-		function retornaBlocos(){
+		function retornaBlocos(){  //Insere os blocos no list na view
 				$sql="SELECT NOME_BLOCO FROM BLOCO";
 				$result=$this->conn->query($sql);
 				while($row = $result->fetch_assoc()) {
@@ -18,7 +18,7 @@
     			}
 		}
 
-		function retornaSalas($Bloco){
+		function retornaSalas($Bloco){ //Insere as salas no list da view
 			$sql="SELECT ID_SALA,ID_ANDAR FROM SALA, BLOCO WHERE SALA.ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO";
 			$result=$this->conn->query($sql);
 				while($row = $result->fetch_assoc()) {
@@ -26,17 +26,17 @@
     			}	
 		}
 
-		function retornaReservaNormal($Bloco,$Andar,$Sala,$Datadia,$coduser){			
-			$coduser=substr($coduser, 1);
-			$dia=substr($Datadia, 0,2);
-			$mes=substr($Datadia,3,2);
-			$ano=substr($Datadia,6,4);
-			$Data=($ano.'-'.$mes.'-'.$dia);
-			$timestamp=strtotime($Data);
-			$diasem=Date("D",$timestamp);
-			$datefix=0;
-			$letra='a';
-			echo "<thead>";
+		function retornaReservaNormal($Bloco,$Andar,$Sala,$Datadia,$coduser){	//Retorna as reservas criando a tabela na view		
+			$coduser=substr($coduser, 1); //Retira o a do nome de usuário
+			$dia=substr($Datadia, 0,2); //Pega o dia 
+			$mes=substr($Datadia,3,2); //Pega o mes
+			$ano=substr($Datadia,6,4); //Pega o ano
+			$Data=($ano.'-'.$mes.'-'.$dia); //Transforma para o padrão do mysql
+			$timestamp=strtotime($Data); //pega o timestamp
+			$diasem=Date("D",$timestamp); //Pega o dia da semana 
+			$datefix=0; //Dia fixo para referenciar a tabela
+			$letra='a'; //Letra do horário, M, T,N....
+			echo "<thead>"; //Cria o cabeçalho da tabela...
 				echo'<tr>
            			<th style="color:white;" class="tg-yw4l">Cod</th>
            			<th style="color:white;" class="tg-yw4l">Segunda</th>
@@ -48,7 +48,7 @@
          </tr>';
          echo "</thead>";
          echo "<tbody>";
-            if($diasem=="Mon"){
+            if($diasem=="Mon"){ //Ifs e elses realizam o calculo da data fixa para inserção na tabela
             	$datefix = strtotime("+0 days", strtotime($Data));
 				$datefix= date("Y-m-d", $datefix);
             }
@@ -78,7 +78,7 @@
 				$datefix= date("Y-m-d", $datefix);
 			}
 
-				for($i=0 ;$i<3 ;$i++){
+				for($i=0 ;$i<3 ;$i++){ //Percorre por M,T,N....
 					if($i==0){
 						$letra='M';
 					}
@@ -89,9 +89,9 @@
 						$letra='N';
 					}
 					echo"<tr>";					
-					for($j=1; $j<7; $j++){
+					for($j=1; $j<7; $j++){ // De M1 até M6, T1 até T6....
 						echo '<td>'.$letra.$j.'</td>';				
-							for($k=0 ;$k<6; $k++){
+							for($k=0 ;$k<6; $k++){ //Percore os dias da semana 
 								$date = strtotime("+"."$k"."days", strtotime($datefix));
 								$date= date("Y-m-d", $date);		
 
