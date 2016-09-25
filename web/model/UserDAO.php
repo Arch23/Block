@@ -27,9 +27,16 @@
 			//Cria a visão do usuário no banco, Mysql zoado salva a visão como um tabela wtf
 			$sqlview="CREATE VIEW a$COD_USUARIO"."view AS SELECT * FROM USUARIO WHERE COD_USUARIO='$COD_USUARIO'";
 			//Concede permição de select e update na visão para o usuário
-			$sqluserview="GRANT SELECT,UPDATE ON Roomz.a$COD_USUARIO"."view TO 'a$COD_USUARIO'@'localhost';";
-		
-			if ($this->conn->query($sqltb) === TRUE && $this->conn->query($sqluser)==TRUE && $this->conn->query($sqlview)==TRUE && $this->conn->query($sqluserview)) {
+			$sqluserview="GRANT SELECT,UPDATE ON Roomz.a$COD_USUARIO"."view TO 'a$COD_USUARIO'@'localhost'";
+            $sqlreservaview="GRANT SELECT ON Roomz.RESERVA_NORMAL TO 'a$COD_USUARIO'@'localhost'";
+            $sqlreserva1view="GRANT SELECT,INSERT,UPDATE,DELETE ON Roomz.RESERVA TO 'a$COD_USUARIO'@'localhost'";
+            $sqlsalaview="GRANT SELECT ON Roomz.SALA TO 'a$COD_USUARIO'@'localhost'";
+            $sqlblocoview="GRANT SELECT ON Roomz.ANDAR TO 'a$COD_USUARIO'@'localhost'";
+            $sqlandarview="GRANT SELECT ON Roomz.BLOCO TO 'a$COD_USUARIO'@'localhost'";
+
+			if ($this->conn->query($sqltb) === TRUE && $this->conn->query($sqluser)==TRUE && $this->conn->query($sqlview)==TRUE && $this->conn->query($sqluserview)
+                && $this->conn->query($sqlreservaview) === TRUE && $this->conn->query($sqlreserva1view)==TRUE && $this->conn->query($sqlsalaview)==TRUE
+                && $this->conn->query($sqlblocoview)==TRUE && $this->conn->query($sqlandarview)==TRUE ) {
     			echo "Usuário Criado com sucesso";
                                 return 1;
 				}else{ //Mostra possíveis erros ao  realizar a query

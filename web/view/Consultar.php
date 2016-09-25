@@ -104,7 +104,7 @@ session_start();
       <select id="Bloco" class="dropdown-list">    
          <?php
           include("../model/ReservaDAO.php");
-          $obj=new ReservaDAO();
+          $obj=new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
           $obj->retornaBlocos();
         ?>    
       </select>

@@ -159,7 +159,7 @@ carregaTabela();
       <select id="Bloco" class="dropdown-list">    
          <?php
           include("../model/ReservaDAO.php");
-          $obj=new ReservaDAO();
+          $obj=new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
           $obj->retornaBlocos();
         ?>    
       </select>
@@ -181,7 +181,7 @@ carregaTabela();
       <table id="Tabela" class="display">
           <?php
           $coduser=$_SESSION["usuario"];
-          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d")-1)."/".date("m")."/".date("Y"),$coduser);
+          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d"))."/".date("m")."/".date("Y"),$coduser);
           ?>   
       </table>      
 </div>

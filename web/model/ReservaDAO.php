@@ -3,12 +3,9 @@
 	class  ReservaDAO{
 		public $conn;
 
-		function __construct(){
+		function __construct($username,$password){
 			$servername="localhost";
-			$username="root";
-			$password="";
 			$dbname="roomz";
-
 			$this->conn = new mysqli($servername, $username, $password,$dbname);                 
 
 		}
@@ -41,13 +38,13 @@
 			$letra='a';
 			echo "<thead>";
 				echo'<tr>
-           			<th class="tg-baqh"></th>
-           			<th class="tg-yw4l">Segunda</th>
-           			<th class="tg-yw4l">Terça</th>
-           			<th class="tg-yw4l">Quarta</th>
-        	     	<th class="tg-yw4l">Quinta</th>
-            		<th class="tg-yw4l">Sexta</th>
-            		<th class="tg-yw4l">Sábado</th>
+           			<th style="color:white;" class="tg-yw4l">Cod</th>
+           			<th style="color:white;" class="tg-yw4l">Segunda</th>
+           			<th style="color:white;" class="tg-yw4l">Terça</th>
+           			<th style="color:white;"class="tg-yw4l">Quarta</th>
+        	     	<th style="color:white;"class="tg-yw4l">Quinta</th>
+            		<th style="color:white;"class="tg-yw4l">Sexta</th>
+            		<th style="color:white;"class="tg-yw4l">Sábado</th>
          </tr>';
          echo "</thead>";
          echo "<tbody>";
@@ -101,7 +98,7 @@
 								$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA_NORMAL, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND SALA_ID_SALA=$Sala AND SALA_ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
 
 
-								$sqlf="SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA=$Sala AND ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
+								$sqlf="SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE ID_BLOCO_RESERVA=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA_RESERVA=$Sala AND ID_ANDAR_RESERVA=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
 
 									$Result=$this->conn->query($sql);
 									$Resultf=$this->conn->query($sqlf);
@@ -109,7 +106,7 @@
 									if(($Result->num_rows==0) && ($Resultf->num_rows==0)){								
 									echo '<td style="color:blue;" id="batata">'.$letra.$j." ".$date.'</td>';
 									}else{
-										 $sqlu= "SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA=$Sala AND ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."' AND COD_USUARIO=".$coduser;
+										 $sqlu= "SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE ID_BLOCO_RESERVA=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA_RESERVA=$Sala AND ID_ANDAR_RESERVA=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."' AND COD_USUARIO_RESERVA=".$coduser;
 									     $Resultu=$this->conn->query($sqlu);
 										 if($Resultu->num_rows!=0){
 										 	echo '<td style="color:green;" class="tg-yw4l">Reservado para Você</td>';
@@ -134,6 +131,26 @@
 		$coduser=$_SESSION["usuario"];
 		$coduser=substr($coduser, 1);
 		$wd=0;
+		$sql="SELECT TIPO_USUARIO,SIGLA_DEPARTAMENTO FROM a".$coduser."view";
+		$Result=$this->conn->query($sql);
+		while($row=$Result->fetch_assoc()){
+			$departamento=$row["SIGLA_DEPARTAMENTO"];
+			if($row["TIPO_USUARIO"]=="ALUNO"){
+				echo "Você não tem permissão para reservar salas!";
+				exit();
+			}
+		}
+		$sql="SELECT SIGLA_DEPARTAMENTO FROM SALA,BLOCO WHERE ID_SALA=".$Sala." AND ID_ANDAR=".$Andar." AND NOME_BLOCO='".$Bloco."'
+		AND SALA.ID_BLOCO=BLOCO.ID_BLOCO";
+		$Result=$this->conn->query($sql);
+		while($row=$Result->fetch_assoc()){
+			if($row["SIGLA_DEPARTAMENTO"]!=$departamento){
+				echo "Você não tem permissão para reservar esta sala!\nContate o ".$row["SIGLA_DEPARTAMENTO"]."!";
+				exit();
+			}
+
+		}
+
 		if(count($vet)>0){
 			$Result=$this->conn->query("SELECT ID_BLOCO FROM BLOCO WHERE NOME_BLOCO='$Bloco'");
 			while($row=$Result->fetch_assoc()){

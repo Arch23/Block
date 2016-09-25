@@ -1,5 +1,4 @@
 <?php
-include("../model/UserDAO.php");
 include("../model/ReservaDAO.php");
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -7,10 +6,9 @@ include("../model/ReservaDAO.php");
  * and open the template in the editor.
  */   
    session_start();
-   $obj=new UserDAO("localhost",$_SESSION["usuario"],$_SESSION["senha"],"roomz");
 	
 	
-	$obj=new ReservaDAO();
+	$obj=new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
 
    if($_POST["Tag"]==1){
    		$bloco=$_POST["Bloco"];
