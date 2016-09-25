@@ -92,20 +92,20 @@
 					for($j=1; $j<7; $j++){ // De M1 até M6, T1 até T6....
 						echo '<td>'.$letra.$j.'</td>';				
 							for($k=0 ;$k<6; $k++){ //Percore os dias da semana 
-								$date = strtotime("+"."$k"."days", strtotime($datefix));
-								$date= date("Y-m-d", $date);		
-
+								$date = strtotime("+"."$k"."days", strtotime($datefix)); //Calcula o dia da semana
+								$date= date("Y-m-d", $date); //Transforma o padrão para mysql		
+								//Verifica a tabela de reserva normal		
 								$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA_NORMAL, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND SALA_ID_SALA=$Sala AND SALA_ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
 
-
+								//Verifica outra trabela de reservas
 								$sqlf="SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE ID_BLOCO_RESERVA=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA_RESERVA=$Sala AND ID_ANDAR_RESERVA=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
-
+									//Executa as querys
 									$Result=$this->conn->query($sql);
 									$Resultf=$this->conn->query($sqlf);
-
+								    //Se nenhum dos campos tiver reserva considera que a sala está disponível
 									if(($Result->num_rows==0) && ($Resultf->num_rows==0)){								
-									echo '<td style="color:blue;" id="batata">'.$letra.$j." ".$date.'</td>';
-									}else{
+									echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+									}else{ //Verifica se a reserva é daquele usuário ou se é de outro
 										 $sqlu= "SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE ID_BLOCO_RESERVA=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA_RESERVA=$Sala AND ID_ANDAR_RESERVA=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."' AND COD_USUARIO_RESERVA=".$coduser;
 									     $Resultu=$this->conn->query($sqlu);
 										 if($Resultu->num_rows!=0){
@@ -127,55 +127,55 @@
 	
 	}
 
-	function realizaReserva($Bloco,$Andar,$Sala,$vet){
-		$coduser=$_SESSION["usuario"];
-		$coduser=substr($coduser, 1);
-		$wd=0;
-		$sql="SELECT TIPO_USUARIO,SIGLA_DEPARTAMENTO FROM a".$coduser."view";
+	function realizaReserva($Bloco,$Andar,$Sala,$vet){//Função para realizar reservas
+		$coduser=$_SESSION["usuario"]; //Puxa o usuário ppela sessão
+		$coduser=substr($coduser, 1); //Retira o a do codigo
+		$wd=0; //vigia
+		$sql="SELECT TIPO_USUARIO,SIGLA_DEPARTAMENTO FROM a".$coduser."view"; //Puxa a visão do usuário
 		$Result=$this->conn->query($sql);
-		while($row=$Result->fetch_assoc()){
-			$departamento=$row["SIGLA_DEPARTAMENTO"];
-			if($row["TIPO_USUARIO"]=="ALUNO"){
+		while($row=$Result->fetch_assoc()){ //Verifica o tipo de usuario
+ 			$departamento=$row["SIGLA_DEPARTAMENTO"]; //Aproveito para pegar o departamento
+			if($row["TIPO_USUARIO"]=="ALUNO"){ //Se for aluno não tem permissão
 				echo "Você não tem permissão para reservar salas!";
-				exit();
+				exit(); //Encerra o código
 			}
 		}
 		$sql="SELECT SIGLA_DEPARTAMENTO FROM SALA,BLOCO WHERE ID_SALA=".$Sala." AND ID_ANDAR=".$Andar." AND NOME_BLOCO='".$Bloco."'
-		AND SALA.ID_BLOCO=BLOCO.ID_BLOCO";
+		AND SALA.ID_BLOCO=BLOCO.ID_BLOCO"; //Verifica o departamento da sala
 		$Result=$this->conn->query($sql);
 		while($row=$Result->fetch_assoc()){
-			if($row["SIGLA_DEPARTAMENTO"]!=$departamento){
+			if($row["SIGLA_DEPARTAMENTO"]!=$departamento){ //Se o usuário não for daquele departamento informa o departamento e passa o contato
 				echo "Você não tem permissão para reservar esta sala!\nContate o ".$row["SIGLA_DEPARTAMENTO"]."!";
 				exit();
 			}
 
 		}
 
-		if(count($vet)>0){
-			$Result=$this->conn->query("SELECT ID_BLOCO FROM BLOCO WHERE NOME_BLOCO='$Bloco'");
+		if(count($vet)>0){ //Verifica se o vetor veio vazio
+			$Result=$this->conn->query("SELECT ID_BLOCO FROM BLOCO WHERE NOME_BLOCO='$Bloco'"); //Pega a ID do bloco
 			while($row=$Result->fetch_assoc()){
 				$Bloco=$row["ID_BLOCO"];
 			}
-		echo "Os seguintes horários/datas foram reservados para você:\n";	
-		foreach ($vet as $key=>$value) {
-				 if($value=="INDISPONÍVEL"){
+		echo "Os seguintes horários/datas foram reservados para você:\n"; //Cabeçalho da mensagem	
+		foreach ($vet as $key=>$value) { 
+				 if($value=="INDISPONÍVEL"){ //Verifica se selecionou uma indisponível
 				 	$wd++;
 			 	}		 	
 			 	else{
-			 		 $hor=substr($value, 0,2);
-			    	 $data=substr($value,2,11);
-			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')";
+			 		 $hor=substr($value, 0,2); //Puxa o ID do horário M1, M2, T5 etc...
+			    	 $data=substr($value,2,11); //Puxa a data
+			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')"; //Insere na tabela de reservas
 			     	 if($this->conn->query($sql)){
-			     	 echo($hor.$data."\n");
+			     	 echo($hor.$data."\n"); //Informa as datas e horários reservados
 			     	}
 
 			 	}
 		}
-		if($wd>0){
+		if($wd>0){ //Se o vigia detectar que foi selecionado um indisponível informa para o usuário
 	 		echo "Atenção, você selecionou um ou mais horários já reservados!\n";
 	 	}
 	 }
-	 else{
+	 else{ //Se o usuário não selecionar nenhum informa ao usuário.
 	 	echo "Selecione ao menos um horário";
 	 }
 				 	

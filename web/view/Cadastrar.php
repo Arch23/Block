@@ -17,8 +17,8 @@
               Codigo: $("#Codigo").val(),
               Nome:   $("#Nome").val(),
               Email:  $("#Email").val(),
-              Departamento: $("#Departamento").val(),
-              Tipo:   $("#Tipo").val(),
+              Departamento: $("#Departamento option:selected").text(),
+              Tipo:   $("#Tipo option:selected").text(),
               Key:    $("#Key").val(),
               Senha:  $("#Senha").val()
           },
@@ -69,21 +69,21 @@
 
                <div class="form-group">
                   <label for="Departamento" class="col-sm-2 control-label">Departamento</label>
-                  <select>
-                     <option value="volvo">Volvo</option>
-                     <option value="saab">Saab</option>
-                     <option value="mercedes">Mercedes</option>
-                     <option value="audi">Audi</option>
+                  <select id="Departamento">
+                    <?php
+                        include("../model/UserDAO.php");
+                        $obj=new UserDAO("localhost","root","","roomz");
+                        $obj->retornaDepts();
+                    ?>
                   </select>
                </div>
                
                <div class="form-group">
                   <label for="Tipo" class="col-sm-2 control-label">Tipo</label>
-                  <select>
-                     <option value="volvo">Volvo</option>
-                     <option value="saab">Saab</option>
-                     <option value="mercedes">Mercedes</option>
-                     <option value="audi">Audi</option>
+                  <select id="Tipo">
+                    <?php
+                      $obj->retornaTipos();
+                    ?>
                   </select>
                </div>
 

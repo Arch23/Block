@@ -52,10 +52,24 @@
                         
     			}
 		}
-                function selectUser(){ //Função para retornar oo ususário
+        function selectUser(){ //Função para retornar o ususário
                     $result=$this->conn->query("SELECT * FROM $this->username"."view");
                     return $result;                    
-                }               
+        }
+        
+        function retornaDepts(){ //Retorna os departamentos
+            $result=$this->conn->query("SELECT SIGLA_DEPARTAMENTO FROM DEPARTAMENTO");
+            while($row=$result->fetch_assoc()){
+                echo '<option value="'.$row["SIGLA_DEPARTAMENTO"].'">'.$row["SIGLA_DEPARTAMENTO"].'</option>';
+            }
+        }
+
+        function retornaTipos(){ //Retorna os tipos de usuário
+            $result=$this->conn->query("SELECT TIPO_USUARIO FROM TIPO_USUARIO");
+            while($row=$result->fetch_assoc()){
+            echo '<option value="'.$row["TIPO_USUARIO"].'">'.$row["TIPO_USUARIO"].'</option>';
+            }
+        }
 
 	}				
 	?>
