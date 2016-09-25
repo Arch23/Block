@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+?>
 <head>
   <title>Consultar</title>
   <meta charset="utf-8">
@@ -13,11 +16,22 @@
   <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
   <script>
    $(document).ready(function(){
-      $('#calendar').focus(function(){
+        $('#calendar').focus(function(){
          $(this).calendario({
             target:'#calendar'
          });
       });
+      var dt= new Date();
+      var ano=dt.getFullYear();
+      var dia=dt.getDate();
+      if(dia<10){
+        dia= "0"+dia;
+      }
+      var mes=dt.getMonth()+1;
+      if(mes<10){
+        mes= "0"+mes;
+      }
+      document.getElementById("calendar").value = dia +"/" + mes+ "/"+ ano;
    });
    </script>
 
@@ -111,7 +125,8 @@
       <div class="clearfix"> </div>
       <table id="Tabela" class="tg">
       <?php
-      $obj->retornaReservaNormal("BLOCO 1",1,1,date("d-m-Y"));
+      $coduser=$_SESSION["usuario"];
+          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d")-1)."/".date("m")."/".date("Y"),$coduser);
       ?>       
       </table>
 </div>
