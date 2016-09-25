@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+?>
 <head>
   <title>Reservar</title>
   <meta charset="utf-8">
@@ -11,7 +14,14 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./jquery/jquery.click-calendario-1.0-min.js"></script>
   <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
-   <script>
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+  <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
+  </script>
+  <script>
    $(document).ready(function(){
       $('#calendar').focus(function(){
          $(this).calendario({
@@ -19,8 +29,7 @@
          });
       });
    });
-   </script>
-
+   </script>   
     <script>
      $(document).ready(function(){ 
     $('#Bloco').change(function(){ 
@@ -36,7 +45,7 @@
     });
   });
 });
-  </script>
+  </script>  
    <script>
     function gotoConsulta(){
        $(document).ready(function(){
@@ -48,12 +57,94 @@
               Datadia: $("#calendar").val()
           },
           function(data,status){
+            $("#Tabela").dataTable().fnDestroy();
             document.getElementById("Tabela").innerHTML = data;
+             $(document).ready(function() {
+                var table = $('#Tabela').DataTable( {
+                   dom: 'Bfrtip',
+                   select:{
+                      style: 'os',
+                      items: 'cell'
+                    },
+                    "iDisplayLength":50,
+                 buttons: [
+                          {
+                            text: 'Reservar',
+                            action: function () {
+                            var reserv = table.cells( { selected: true } ).data();
+                            var i=0;
+                            var dadosreserv=[];
+                            for(i=0;i<reserv.length;i++){
+                            dadosreserv.push(reserv[i]);                      
+                            }
+                            var st = JSON.stringify(dadosreserv);
+                               $.post("../controller/ReservaController.php",
+                               {
+                                   Tag: 3,
+                                   dadosreserv: st,
+                                    Bloco: $("#Bloco option:selected").text(),
+                                    Sala:  $("#Salas option:selected").text()
+                                },
+                               function(data,status){
+                                alert(data);
+                                $.post("../controller/ReservaController.php",
+                                {
+                                 Bloco: $("#Bloco option:selected").text(),
+                                 Sala:  $("#Salas option:selected").text(),
+                                 Datadia: $("#calendar").val(),
+                                 Tag:2
+                                },
+                                function(data,status){
+                               document.getElementById("Tabela").innerHTML = data;
+                               });
+                               });   
+                               
+                          }
+                  }
+                ]
+                } );
+             } );
            });
        });
   }
   </script>
-
+  <script>
+  $(document).ready(function() {
+    var table = $('#Tabela').DataTable( {
+        dom: 'Bfrtip',
+        select:{
+          style: 'os',
+          items: 'cell'
+        },
+         "iDisplayLength":50,
+        buttons: [
+            {
+                text: 'Reservar',
+                action: function () {
+                    var reserv = table.cells( { selected: true } ).data();
+                    var i=0;
+                    var dadosreserv=[];
+                    for(i=0;i<reserv.length;i++){
+                      dadosreserv.push(reserv[i]);                      
+                    }
+                    var st = JSON.stringify(dadosreserv);
+                       $.post("../controller/ReservaController.php",
+                               {
+                                   Tag: 3,
+                                   dadosreserv: st,
+                                    Bloco: $("#Bloco option:selected").text(),
+                                    Sala:  $("#Salas option:selected").text()
+                                },
+                               function(data,status){
+                                alert(data);
+                               });   
+                }
+            }
+        ]
+    } );
+  } );
+  </script>
+ 
 </head>
 <body>
   <!--BARRA DE NAVEGAÇÃO-->
@@ -112,12 +203,14 @@
            <button type="button" onclick="gotoConsulta();return false;">Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
-      <table id="Tabela" class="tg">
-      <?php
-      $obj->retornaReservaNormal("BLOCO 1",1,1,date("d-m-Y"));
-      ?>    
-      </table>
+      <table id="Tabela" class="display">
+          <?php
+          $coduser=$_SESSION["usuario"];
+          $obj->retornaReservaNormal("BLOCO 1",1,1,date("d-m-Y"),"$coduser");
+          ?>   
+      </table>      
 </div>
+
 
 <!--
   <div class="page-header">
