@@ -69,16 +69,22 @@
 
                <div class="form-group">
                   <label for="Departamento" class="col-sm-2 control-label">Departamento</label>
-                  <div class="col-sm-8">
-                     <input type="text" name ="Departamento" class="form-control" id="Departamento" placeholder="Departamento" >
-                  </div>
+                  <select>
+                     <option value="volvo">Volvo</option>
+                     <option value="saab">Saab</option>
+                     <option value="mercedes">Mercedes</option>
+                     <option value="audi">Audi</option>
+                  </select>
                </div>
-
+               
                <div class="form-group">
                   <label for="Tipo" class="col-sm-2 control-label">Tipo</label>
-                  <div class="col-sm-8">
-                     <input type="text" name ="Tipo" class="form-control" id="Tipo" placeholder="Tipo de usuário" >
-                  </div>
+                  <select>
+                     <option value="volvo">Volvo</option>
+                     <option value="saab">Saab</option>
+                     <option value="mercedes">Mercedes</option>
+                     <option value="audi">Audi</option>
+                  </select>
                </div>
 
                <div class="form-group">
