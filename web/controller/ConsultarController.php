@@ -10,7 +10,7 @@ include("../model/ReservaDAO.php");
 	$salaid=substr($sala,1,1);
 	$usuario=$_SESSION["usuario"];
 
-	$obj= new ReservaDAO();
+	$obj= new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
 	$obj->retornaReservaNormal($bloco,$andar,$salaid,$datadia,$usuario);
 
 ?>
