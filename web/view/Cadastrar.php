@@ -69,7 +69,7 @@
 
                <div class="form-group">
                   <label for="Departamento" class="col-sm-2 control-label">Departamento</label>
-                  <select id="Departamento">
+                  <select id="Departamento" class="dropdown-cad form-control">
                     <?php
                         include("../model/UserDAO.php");
                         $obj=new UserDAO("localhost","root","","roomz");
@@ -77,10 +77,10 @@
                     ?>
                   </select>
                </div>
-               
+
                <div class="form-group">
                   <label for="Tipo" class="col-sm-2 control-label">Tipo</label>
-                  <select id="Tipo">
+                  <select id="Tipo" class="dropdown-cad form-control">
                     <?php
                       $obj->retornaTipos();
                     ?>
