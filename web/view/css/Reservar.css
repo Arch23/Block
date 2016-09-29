@@ -103,9 +103,27 @@
    vertical-align:top
 }
 
-.btn-reservar{
-   width: 74px;
+.reservar-button{
+   width: 100px;
+   margin-left: 50px;  
+}
+
+
+
+/*tabela*/
+.dataTables_wrapper{
+   width: 90%;
+   margin: auto;
+}
+
+div.dt-buttons{
+   float: none;
+   width: 88px;
    margin-left: auto;
    margin-right: auto;
-   padding-top: 20px;
+}
+
+/*arrumar calendario*/
+div.calendario{
+   width: 155px;
 }

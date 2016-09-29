@@ -8,17 +8,18 @@ session_start(); //Puxa os dados da sessão para a pagina
   <meta charset="utf-8">
   <meta  content="width=970px, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
+   <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="./css/common.css">
   <link rel="stylesheet" type="text/css" href="./css/Reservar.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./jquery/jquery.click-calendario-1.0-min.js"></script>
-  <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
+
   <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-  <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
   <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
   </script>
   <script>
@@ -40,10 +41,10 @@ session_start(); //Puxa os dados da sessão para a pagina
       }
       document.getElementById("calendar").value = dia +"/" + mes+ "/"+ ano;
    });
-   </script>   
+   </script>
     <script> //Controla o list dos blocos e salas
-     $(document).ready(function(){ 
-    $('#Bloco').change(function(){ 
+     $(document).ready(function(){
+    $('#Bloco').change(function(){
     $(document).ready(function(){
           $.post("../controller/ReservaController.php",
            {
@@ -56,7 +57,7 @@ session_start(); //Puxa os dados da sessão para a pagina
     });
   });
 });
-  </script>  
+  </script>
    <script>
     function gotoConsulta(){ //Realiza a consulta para determinada sala e data
        $(document).ready(function(){
@@ -97,20 +98,20 @@ session_start(); //Puxa os dados da sessão para a pagina
                     var i=0; //starta o contador
                     var dadosreserv=[]; //Starta o array
                     for(i=0;i<reserv.length;i++){ //Filtra o array de reserva
-                      dadosreserv.push(reserv[i]);                      
+                      dadosreserv.push(reserv[i]);
                     }
                     var st = JSON.stringify(dadosreserv);  //Transforma o array em uma string
                        $.post("../controller/ReservaController.php",
                                {
                                     Tag: 3, //Envia os dados atraves do post
                                     dadosreserv: st,
-                                    Bloco: $("#Bloco option:selected").text(), 
+                                    Bloco: $("#Bloco option:selected").text(),
                                     Sala:  $("#Salas option:selected").text()
                                 },
-                               function(data,status){                               
+                               function(data,status){
                                 alert(data); //Alerta o resultado obtido
                                });
-                               gotoConsulta(); //Chama a consulta e inicializa a tabela novamente    
+                               gotoConsulta(); //Chama a consulta e inicializa a tabela novamente
                 }
             }
         ]
@@ -119,7 +120,7 @@ session_start(); //Puxa os dados da sessão para a pagina
 }
 carregaTabela(); //Chama a função ao carregar a pagina para garantir que a tabela seja inicializada
 </script>
- 
+
 </head>
 <body>
   <!--BARRA DE NAVEGAÇÃO-->
@@ -156,12 +157,12 @@ carregaTabela(); //Chama a função ao carregar a pagina para garantir que a tab
    <h3 class="h3">Reserva de Salas</h3>
    <div class="blocks">
       <h5 class="sub-h">Bloco: </h5>
-      <select id="Bloco" class="dropdown-list">    
+      <select id="Bloco" class="dropdown-list">
          <?php
           include("../model/ReservaDAO.php");
           $obj=new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
           $obj->retornaBlocos();
-        ?>    
+        ?>
       </select>
    </div>
    <div class="blocks">
@@ -170,20 +171,20 @@ carregaTabela(); //Chama a função ao carregar a pagina para garantir que a tab
         <?php
         $obj->retornaSalas("BLOCO 1");
         ?>
-      </select>      
+      </select>
    </div>
    <div class="blocks">
          <h5 class="sub-h">Data: </h5>
          <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10" value/>
-           <button type="button" onclick="gotoConsulta();return false;">Pesquisar</button>
+           <button type="button" onclick="gotoConsulta();return false;" class='reservar-button'>Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
       <table id="Tabela" class="display">
           <?php
           $coduser=$_SESSION["usuario"];
           $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d"))."/".date("m")."/".date("Y"),$coduser);
-          ?>   
-      </table>      
+          ?>
+      </table>
 </div>
 
 
