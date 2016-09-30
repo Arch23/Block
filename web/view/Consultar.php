@@ -36,8 +36,8 @@ session_start();
    </script>
 
     <script>
-     $(document).ready(function(){ 
-    $('#Bloco').change(function(){ 
+     $(document).ready(function(){
+    $('#Bloco').change(function(){
     $(document).ready(function(){
           $.post("../controller/ReservaController.php",
            {
@@ -101,12 +101,12 @@ session_start();
    <h3 class="h3">Consulta de Horários</h3>
    <div class="blocks">
       <h5 class="sub-h">Bloco: </h5>
-      <select id="Bloco" class="dropdown-list">    
+      <select id="Bloco" class="dropdown-list">
          <?php
           include("../model/ReservaDAO.php");
           $obj=new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
           $obj->retornaBlocos();
-        ?>    
+        ?>
       </select>
    </div>
    <div class="blocks">
@@ -115,19 +115,19 @@ session_start();
         <?php
         $obj->retornaSalas("BLOCO 1");
         ?>
-      </select>     
+      </select>
     </div>
    <div class="blocks">
          <h5 class="sub-h">Data: </h5>
          <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10"/>
-         <button type="button" onclick="gotoConsulta();return false;">Pesquisar</button>
+         <button type="button" onclick="gotoConsulta();return false;" class="btn btn-default">Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
       <table id="Tabela" class="tg">
       <?php
       $coduser=$_SESSION["usuario"];
           $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d")-1)."/".date("m")."/".date("Y"),$coduser);
-      ?>       
+      ?>
       </table>
 </div>
 </body>
