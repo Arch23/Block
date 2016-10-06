@@ -13,7 +13,7 @@
 	}
 		$sql="SELECT COD_USUARIO,TIPO_USUARIO FROM USUARIO WHERE KEY_USER='".$key."'";
 		$Result=$conn->query($sql);
-		if($Result->num_rows){
+		if($Result->num_rows==0){
 			echo "<Usuario nao encontrado!>";
 			exit;
 		}
@@ -47,7 +47,7 @@
 						 $Result=$conn->query($sql);
 						 echo "<Reserva liberada!>";
 					}else{
-						echo "<Você nao pode usar esta sala!>";
+						echo "<Voce nao pode usar esta sala!>";
 					}
 			}else{
 				echo "sala utilizada!";			}	
