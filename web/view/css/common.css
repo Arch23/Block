@@ -34,3 +34,13 @@ body {
   margin-left:25%;
   margin-top:0%;
 }
+
+.fundo3{
+   position: relative;
+   background-color: #1a1a1a;
+   width: 80%;
+
+   margin: auto;
+   border-radius: 10px;
+   padding-bottom: 30px;
+}

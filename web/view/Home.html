@@ -1,72 +1,121 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <title>Home</title>
     <meta charset="utf-8">
-    <meta  content="width=970px, initial-scale=1">
+    <meta content="width=970px, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/common.css">
     <link rel="stylesheet" type="text/css" href="./css/Home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <!--BARRA DE NAVEGAÇÃO-->
     <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-         <a class="navbar-brand" href="#">S.G.S.</a>
-       </div>
-       <ul class="nav navbar-nav">
-         <li class="active"><a href="#">Home</a></li>
-         <li><a href="Reservar.php">Reservar</a></li>
-         <li><a href="Consultar.php">Consultar</a></li>
-         <li><a href="Historico.html">Histórico</a></li>
-       </ul>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">S.G.S.</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="Reservar.php">Reservar</a></li>
+                <li><a href="Consultar.php">Consultar</a></li>
+                <li><a href="Historico.html">Histórico</a></li>
+            </ul>
 
-       <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a href="#">OPÇÃO DE LINK 0</a></li>-->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="Configuracoes.html">Configurações</a></li>
-            <li><a href="Ajuda.html">Ajuda</a></li>
-            <!--<li><a href="#">OPÇÃO DE LINK 2</a></li>-->
-            <li role="separator" class="divider"></li>
-            <li><a href="../controller/SairController.php">Sair</a></li>
-          </ul>
-        </li>
-      </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- <li><a href="#">OPÇÃO DE LINK 0</a></li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Configuracoes.html">Configurações</a></li>
+                        <li><a href="Ajuda.html">Ajuda</a></li>
+                        <!--<li><a href="#">OPÇÃO DE LINK 2</a></li>-->
+                        <li role="separator" class="divider"></li>
+                        <li><a href="../controller/SairController.php">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--  FIM  BARRA DE NAVEGAÇÃO-->
+
+
+    <div class="col-sm-8 text-left div-user">
+        <h3 style="color: #FFFFFF;">Bem-vindo</h3>
+        <p id='nomeUsuario' style="color:#FFFFFF;">Usuario</p>
     </div>
-  </nav><!--  FIM  BARRA DE NAVEGAÇÃO-->
 
+    <div class="fundo3">
+        <div class="div-titulo">
+            <h2 class="titulo">Suas reservas:</h2>
+        </div>
+        <hr style="border: 2px dashed black; width: 99%;" />
 
-  <div class="col-sm-8 text-left">
-    <h3>Bem-vindo</h3>
-    <p id='nomeUsuario'>Usuario</p>
-  </div>
-
-    <div class="caixa1">
-          <h2 class="titulo">Reservas recentes</h2>
-          <hr style="border: 2px dashed black" />
-
-          <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Sala reservada: </h3> 
+                <h3 class="panel-title">Sala reservada: </h3>
             </div>
             <div class="panel-body">
-               
-              <p class="data-reserva">Data: </p>
-              <p class="hora-reserva">Horário: </p>
 
-              <div class="round-button"> X</div> <!-- BOTÃO -->
+                <p class="data-reserva">Data: 22/22/2222</p>
+                <p class="hora-reserva">Horário: 12:00-13:00</p>
+
+                <div class="round-button"> X</div>
+                <!-- BOTÃO -->
             </div>
-          </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sala reservada: </h3>
+            </div>
+            <div class="panel-body">
+
+                <p class="data-reserva">Data: 22/22/2222</p>
+                <p class="hora-reserva">Horário: 12:00-13:00</p>
+
+                <div class="round-button"> X</div>
+                <!-- BOTÃO -->
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sala reservada: </h3>
+            </div>
+            <div class="panel-body">
+
+                <p class="data-reserva">Data: 22/22/2222</p>
+                <p class="hora-reserva">Horário: 12:00-13:00</p>
+
+                <div class="round-button"> X</div>
+                <!-- BOTÃO -->
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sala reservada: </h3>
+            </div>
+            <div class="panel-body">
+
+                <p class="data-reserva">Data: 22/22/2222</p>
+                <p class="hora-reserva">Horário: 12:00-13:00</p>
+
+                <div class="round-button"> X</div>
+                <!-- BOTÃO -->
+            </div>
+        </div>
     </div>
-  <!--
+    <!--
     <div class="page-header">
           <h1>Atualiações</h1>
     </div>
   -->
-  </body>
-  </html>
+</body>
+
+</html>
