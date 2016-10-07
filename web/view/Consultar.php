@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 session_start();
+date_default_timezone_set ("America/Sao_Paulo");
 ?>
 <head>
   <title>Consultar</title>
@@ -126,7 +127,7 @@ session_start();
       <table id="Tabela" class="tg">
       <?php
       $coduser=$_SESSION["usuario"];
-          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d")-1)."/".date("m")."/".date("Y"),$coduser);
+          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d"))."/".date("m")."/".date("Y"),$coduser);
       ?>
       </table>
 </div>

@@ -22,7 +22,7 @@ EthernetClient client;
 char inString[32]; // string for incoming serial data
 int stringPos = 0; // string index counter
 boolean startRead = false; // is reading?
-
+String aux;
 void setup(){
   Ethernet.begin(mac);
   Serial.begin(9600);
@@ -46,13 +46,32 @@ String connectAndRead(){
     Serial.println("connected");
     client.print("GET ");
     client.print(location);
-    client.print("key=111&bloco=1&andar=1&sala=1");
+    client.print("key=5&bloco=1&andar=1&sala=1");
     client.println(" HTTP/1.0");
     client.println();
-
-    //Connected - Read the page
-    return readPage(); //go and read the output
-
+    aux=readPage();
+    if(aux.equals("Pode entrar")){
+      Serial.println("Seja bem vindo!");
+    }
+    else if(aux.equals("Sala utilizada!")){
+      Serial.println("Sala em uso!");
+    }
+    else if(aux.equals("Reserva liberada!")){
+      Serial.println("Reserva Registrada,Pode entrar");
+    }
+    else if(aux.equals("Voce nao pode usar esta sala!")){
+      Serial.println("Voce nao pode usar esta sala, contate o departamento resposavel!");
+    }
+    else if(aux.equals("Voce nao pode reservar salas")){
+      Serial.println("Voce nao tem permissao de reservar salas!");
+    }
+    else if(aux.equals("Usuario nao encontrado!")){
+       Serial.println("Usuario nao encontrado verifique sua tag!");
+    }
+    else{
+      return readPage();
+    }
+  
   }else{
     return "connection failed";
   }

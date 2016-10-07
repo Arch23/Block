@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 session_start(); //Puxa os dados da sessão para a pagina
+date_default_timezone_set ("America/Sao_Paulo");
 ?>
 <head>
    <title>Reservar</title>
