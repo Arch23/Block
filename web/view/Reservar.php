@@ -54,11 +54,21 @@ date_default_timezone_set ("America/Sao_Paulo");
             },
             function(data,status){
                document.getElementById("Salas").innerHTML = data;
+               gotoConsulta();
             });
          });
       });
    });
    </script>
+    <script> //Controla o list dos blocos e salas
+   $(document).ready(function(){
+      $('#Salas').change(function(){
+         $(document).ready(function(){
+          gotoConsulta();
+         });
+      });
+   });
+   </script>   
    <script>
    function gotoConsulta(){ //Realiza a consulta para determinada sala e data
       $(document).ready(function(){

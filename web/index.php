@@ -23,7 +23,7 @@
         		}
         		else{
         		    //alert("Prossiga com login");
-        			location.href="view/Reservar.php";
+        			location.href="view/Home.html";
         		}
        		 });
 
