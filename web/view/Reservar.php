@@ -141,7 +141,7 @@ date_default_timezone_set ("America/Sao_Paulo");
             <a class="navbar-brand" href="#">S.G.S.</a>
          </div>
          <ul class="nav navbar-nav">
-            <li><a href="Home.html">Home</a></li>
+            <li><a href="Home.php">Home</a></li>
             <li class="active"><a href="Reservar.php">Reservar</a></li>
             <li><a href="Consultar.php">Consultar</a></li>
             <li><a href="Historico.html">Histórico</a></li>

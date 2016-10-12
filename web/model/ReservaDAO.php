@@ -180,5 +180,15 @@
 	 }
 				 	
 	}
+	function cancelaReserva($bloco,$andar,$sala,$data,$horario){
+		$coduser=$_SESSION["usuario"]; //Puxa o usuário ppela sessão
+		$coduser=substr($coduser, 1); //Retira o a do codigo
+		$sql="DELETE FROM RESERVA WHERE COD_USUARIO_RESERVA=$coduser AND ID_BLOCO_RESERVA= $bloco AND ID_ANDAR_RESERVA= $andar AND  ID_SALA_RESERVA=  $sala AND DATA_RESERVA='$data' AND HORARIO_ID_HORARIO='$horario'";
+		if($this->conn->query($sql)){
+			echo "Reserva Cancelada!";
+		}else{
+			echo "Erro ao cancelar, tente novamente!";
+		}
+	}
 }
 ?>

@@ -70,6 +70,31 @@
             echo '<option value="'.$row["TIPO_USUARIO"].'">'.$row["TIPO_USUARIO"].'</option>';
             }
         }
-
+        function retornaNomeUser(){
+            $nomeuser="???";
+            $result=$this->conn->query("SELECT NOME_USUARIO FROM $this->username"."view");
+            while($row=$result->fetch_assoc()){
+            $nomeuser=$row["NOME_USUARIO"];
+            }
+            return $nomeuser;
+        }
+        function retornaReservasUser(){
+            $cont=0;
+            $coduser=substr($this->username, 1); //Retira o a do nome de usuário
+            $result=$this->conn->query("SELECT * FROM RESERVA WHERE COD_USUARIO_RESERVA=$coduser AND DATA_RESERVA>='".date("Y-m-d")."'");
+            while($row=$result->fetch_assoc()){
+            $cont++;         
+            echo' <div id="Reserva'.$cont.'"class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 id="Reserva'.$cont.'sala" class="panel-title">Sala reservada:'.$row["ID_BLOCO_RESERVA"].$row["ID_ANDAR_RESERVA"].$row["ID_SALA_RESERVA"].'</h3>
+                  </div>
+                  <div  class="panel-body">
+                    <p id="Reserva'.$cont.'data" class="data-reserva">Data:'.$row["DATA_RESERVA"].'</p>
+                    <p id="Reserva'.$cont.'horario" class="hora-reserva">Horário:'.$row["HORARIO_ID_HORARIO"].'</p>
+                    <button id="Reserva'.$cont.'" class="round-button"> X</button>
+                </div>
+        </div>';
+            }
+        }
 	}				
 	?>

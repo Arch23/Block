@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+session_start(); //Puxa os dados da sessão para a pagina
+date_default_timezone_set ("America/Sao_Paulo");
+?>
 <head>
     <title>Home</title>
     <meta charset="utf-8">
@@ -10,6 +13,36 @@
     <link rel="stylesheet" type="text/css" href="./css/Home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script> //Exibe o nome de usuário
+   $(document).ready(function(){
+      $(document).ready(function(){
+            $.post("../controller/HomeController.php",
+            {
+               Tag: 1
+            },
+            function(data,status){
+               document.getElementById("nomeUsuario").innerHTML = data;
+            });
+         });
+   });
+   </script>
+   <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+         $("#"+$(this).attr('id')).hide();          
+                  $.post("../controller/HomeController.php",
+                 {
+                    Tag:2,
+                    Sala: document.getElementById($(this).attr('id')+"sala").innerHTML,
+                    Data: document.getElementById($(this).attr('id')+"data").innerHTML,
+                    Horario:document.getElementById($(this).attr('id')+"horario").innerHTML
+                },
+                function(data,status){
+                     alert(data);
+                 });            
+        });       
+    });
+</script>
 </head>
 
 <body>
@@ -46,70 +79,19 @@
 
     <div class="col-sm-8 text-left div-user">
         <h3 style="color: #FFFFFF;">Bem-vindo</h3>
-        <p id='nomeUsuario' style="color:#FFFFFF;">Usuario</p>
+        <p id="nomeUsuario" style="color:#FFFFFF;"></p>
     </div>
 
     <div class="fundo3">
         <div class="div-titulo">
             <h2 class="titulo">Suas reservas:</h2>
         </div>
-        <hr style="border: 2px dashed black; width: 99%;" />
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Sala reservada: </h3>
-            </div>
-            <div class="panel-body">
-
-                <p class="data-reserva">Data: 22/22/2222</p>
-                <p class="hora-reserva">Horário: 12:00-13:00</p>
-
-                <div class="round-button"> X</div>
-                <!-- BOTÃO -->
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Sala reservada: </h3>
-            </div>
-            <div class="panel-body">
-
-                <p class="data-reserva">Data: 22/22/2222</p>
-                <p class="hora-reserva">Horário: 12:00-13:00</p>
-
-                <div class="round-button"> X</div>
-                <!-- BOTÃO -->
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Sala reservada: </h3>
-            </div>
-            <div class="panel-body">
-
-                <p class="data-reserva">Data: 22/22/2222</p>
-                <p class="hora-reserva">Horário: 12:00-13:00</p>
-
-                <div class="round-button"> X</div>
-                <!-- BOTÃO -->
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Sala reservada: </h3>
-            </div>
-            <div class="panel-body">
-
-                <p class="data-reserva">Data: 22/22/2222</p>
-                <p class="hora-reserva">Horário: 12:00-13:00</p>
-
-                <div class="round-button"> X</div>
-                <!-- BOTÃO -->
-            </div>
-        </div>
+        <hr style="border: 2px dashed black; width: 99%;" />   
+        <?php
+            include("../model/UserDAO.php");
+            $obj=new UserDAO("localhost",$_SESSION["usuario"],$_SESSION["senha"],"roomz");
+            $obj->retornaReservasUser();
+        ?>   
     </div>
     <!--
     <div class="page-header">

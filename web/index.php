@@ -23,7 +23,7 @@
         		}
         		else{
         		    //alert("Prossiga com login");
-        			location.href="view/Home.html";
+        			location.href="view/Home.php";
         		}
        		 });
 
