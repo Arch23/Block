@@ -1,5 +1,5 @@
 <?php
-	
+	date_default_timezone_set ("America/Sao_Paulo");
 	class  ReservaDAO{ //Classe para controle das reservas
 		public $conn; //Conexão do usuário
 
@@ -103,8 +103,12 @@
 									$Result=$this->conn->query($sql);
 									$Resultf=$this->conn->query($sqlf);
 								    //Se nenhum dos campos tiver reserva considera que a sala está disponível
-									if(($Result->num_rows==0) && ($Resultf->num_rows==0)){								
-									echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+									if(($Result->num_rows==0) && ($Resultf->num_rows==0)){
+									if($date>=date("Y-m-d")){								
+										echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+									}else{
+										echo '<td style="color:gray;">INDISPONÍVEL</td>';
+									}
 									}else{ //Verifica se a reserva é daquele usuário ou se é de outro
 										 $sqlu= "SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE ID_BLOCO_RESERVA=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA_RESERVA=$Sala AND ID_ANDAR_RESERVA=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."' AND COD_USUARIO_RESERVA=".$coduser;
 									     $Resultu=$this->conn->query($sqlu);
@@ -131,6 +135,7 @@
 		$coduser=$_SESSION["usuario"]; //Puxa o usuário ppela sessão
 		$coduser=substr($coduser, 1); //Retira o a do codigo
 		$wd=0; //vigia
+		$wd2=0;
 		$sql="SELECT TIPO_USUARIO,SIGLA_DEPARTAMENTO FROM a".$coduser."view"; //Puxa a visão do usuário
 		$Result=$this->conn->query($sql);
 		while($row=$Result->fetch_assoc()){ //Verifica o tipo de usuario
@@ -156,7 +161,7 @@
 			while($row=$Result->fetch_assoc()){
 				$Bloco=$row["ID_BLOCO"];
 			}
-		echo "Os seguintes horários/datas foram reservados para você:\n"; //Cabeçalho da mensagem	
+		
 		foreach ($vet as $key=>$value) { 
 				 if($value=="INDISPONÍVEL"){ //Verifica se selecionou uma indisponível
 				 	$wd++;
@@ -166,13 +171,17 @@
 			    	 $data=substr($value,2,11); //Puxa a data
 			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')"; //Insere na tabela de reservas
 			     	 if($this->conn->query($sql)){
+			     	 	if($wd2==0){
+			     	 		echo "Os seguintes horários/datas foram reservados para você:\n"; //Cabeçalho da mensagem	
+			     	 	}
+			     	 	$wd2++;
 			     	 echo($hor.$data."\n"); //Informa as datas e horários reservados
 			     	}
 
 			 	}
 		}
 		if($wd>0){ //Se o vigia detectar que foi selecionado um indisponível informa para o usuário
-	 		echo "Atenção, você selecionou um ou mais horários já reservados!\n";
+	 		echo "Atenção, você selecionou um ou mais horários indisponíveis!\n";
 	 	}
 	 }
 	 else{ //Se o usuário não selecionar nenhum informa ao usuário.
