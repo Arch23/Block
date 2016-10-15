@@ -1,107 +1,199 @@
-//ARDUINO 1.0+ ONLY
-//ARDUINO 1.0+ ONLY
-#include <Ethernet.h>
+
+//Programa : RFID - Controle de Acesso leitor RFID
+ 
 #include <SPI.h>
+#include <MFRC522.h>
+#include <LiquidCrystal.h>
+#include <Ethernet.h>
 
-////////////////////////////////////////////////////////////////////////
-//CONFIGURE
-////////////////////////////////////////////////////////////////////////
-byte server[] = {192,168,1,100 }; //ip Address of the server you will connect to
 
-//The location to go to on the server
-//make sure to keep HTTP/1.0 at the end, this is telling it what type of file it is
+byte server[] = {192,168,1,100}; 
 String location = " /block/web/model/ArduinoDAO.php?";
 
 
-// if need to change the MAC address (Very Rare)
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-////////////////////////////////////////////////////////////////////////
-
 EthernetClient client;
 
 char inString[32]; // string for incoming serial data
 int stringPos = 0; // string index counter
 boolean startRead = false; // is reading?
 String aux;
-void setup(){
+#define SS_PIN 8
+#define RST_PIN 9
+MFRC522 mfrc522(SS_PIN, RST_PIN); 
+LiquidCrystal lcd(6, 7, 5, 4, 3, 2); 
+char st[20];
+String conteudo= "";
+void setup() 
+{
+  Serial.begin(9600);   
+  SPI.begin();     
+  mfrc522.PCD_Init();   
+  lcd.begin(16, 2); 
   Ethernet.begin(mac);
   Serial.begin(9600);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Conectando...");
+   while(!client.connect(server,80)){
+     delay(4000);  
+  }
+   mensageminicial();
 }
-
-void loop(){
-  String pageValue = connectAndRead(); //connect to the server and read the output
-
-  Serial.println(pageValue); //print out the findings.
-
-  delay(5000); //wait 5 seconds before connecting again
+ 
+void loop() 
+{  
+  if ( ! mfrc522.PICC_IsNewCardPresent()) 
+  {
+    return;
+  }
+  if ( ! mfrc522.PICC_ReadCardSerial()) 
+  {
+    return;
+  }
+  
+  byte letra;
+  for (byte i = 0; i < mfrc522.uid.size; i++) 
+  {   
+     conteudo.concat(String(mfrc522.uid.uidByte[i], HEX));
+  }
+  Serial.println();
+  Serial.print(conteudo);
+  delay(2000);
+  String pageValue = connectAndRead();
+ 
 }
-
 String connectAndRead(){
   //connect to the server
-
-  Serial.println("connecting...");
-
-  //port 80 is typical of a www page
-  if (client.connect(server, 80)) {
-    Serial.println("connected");
+  lcd.clear();
     client.print("GET ");
     client.print(location);
-    client.print("key=5&bloco=1&andar=1&sala=1");
+    client.print("key=");
+    client.print(conteudo);
+    client.print("&bloco=1&andar=1&sala=1");
     client.println(" HTTP/1.0");
     client.println();
     aux=readPage();
-    if(aux.equals("Pode entrar")){
-      Serial.println("Seja bem vindo!");
+    
+    if(aux.substring(0,11).equals("Pode entrar")){
+      lcd.clear();
+      lcd.setCursor(0,0); 
+      lcd.print("Seja Bem Vindo!");
+      lcd.setCursor(0,1);
+      lcd.print("Limite:");
+      lcd.print(aux.substring(11));
     }
-    else if(aux.equals("Sala utilizada!")){
-      Serial.println("Sala em uso!");
+    else if(aux.substring(0,15).equals("Sala utilizada!")){
+      lcd.clear();
+      lcd.setCursor(0,0); 
+      lcd.print("Sala em uso!");
     }
-    else if(aux.equals("Reserva liberada!")){
-      Serial.println("Reserva Registrada,Pode entrar");
+    else if(aux.substring(0,17).equals("Reserva liberada!")){
+      for(int i=0;i<3;i++){
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Reserva Registra");
+      lcd.setCursor(0,1);
+      lcd.print("Limite:");
+      lcd.print(aux.substring(17));
+      delay(1000);
+      
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("serva Registrada");
+      lcd.setCursor(0,1);
+      lcd.print("Limite:");
+      lcd.print(aux.substring(17));
+      delay(1000);
+      }
     }
     else if(aux.equals("Voce nao pode usar esta sala!")){
-      Serial.println("Voce nao pode usar esta sala, contate o departamento resposavel!");
+      for(int i=0;i<3;i++){
+      lcd.clear();  
+      lcd.setCursor(0,0); 
+      lcd.print("Voce nao pode us");
+      lcd.setCursor(0,1);
+      lcd.print("Contate o depart");
+      delay(1000);
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("usar esta sala!");
+      lcd.setCursor(0,1);
+      lcd.print("amento responsa");
+      delay(1000);
+      lcd.setCursor(0,1);
+      lcd.print("                     ");
+      lcd.setCursor(0,1);
+      lcd.print("reponsavel!");
+      delay(1000);
+      }
     }
     else if(aux.equals("Voce nao pode reservar salas")){
-      Serial.println("Voce nao tem permissao de reservar salas!");
+     for(int i=0;i<3;i++){ 
+      lcd.clear();
+      lcd.setCursor(0,0); 
+      lcd.print("Voce nao tem per");
+      lcd.setCursor(0,1);
+      lcd.print("Para reservar sa");
+      delay(1000);
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("tem permissao!");
+      lcd.setCursor(0,1);
+      lcd.print("reservar salas!");
+      delay(1000);
+     }
     }
     else if(aux.equals("Usuario nao encontrado!")){
-       Serial.println("Usuario nao encontrado verifique sua tag!");
+        for(int i=0;i<3;i++){
+        lcd.clear();
+        lcd.setCursor(0,0); 
+        lcd.print("User nao encontr");
+        lcd.setCursor(0,1); 
+        lcd.print("Verifique sua ta!");
+        delay(1000);
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("nao encontrado!");
+        lcd.setCursor(0,1); 
+        lcd.print("sua tag!");
+        delay(1000);
+        }
     }
     else{
-      return readPage();
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("Tente novamente");
+        delay(3000);
+        soft_reset();
+        mensageminicial();
+        conteudo="";
     }
-  
-  }else{
-    return "connection failed";
-  }
+  delay(3000);
+  soft_reset();
+  mensageminicial();
+  conteudo="";
+} 
 
-}
-
-String readPage(){
-  //read the page, and capture & return everything between '<' and '>'
+ String readPage(){
 
   stringPos = 0;
-  memset( &inString, 0, 32 ); //clear inString memory
+  memset( &inString, 0, 32 );
 
   while(true){
 
     if (client.available()) {
       char c = client.read();
 
-      if (c == '<' ) { //'<' is our begining character
-        startRead = true; //Ready to start reading the part 
+      if (c == '<' ) { 
+        startRead = true; 
       }else if(startRead){
 
-        if(c != '>'){ //'>' is our ending character
+        if(c != '>'){
           inString[stringPos] = c;
           stringPos ++;
         }else{
-          //got what we need here! We can disconnect now
-          startRead = false;
-          client.stop();
-          client.flush();
-          Serial.println("disconnecting.");
+          startRead = false;        
           return inString;
 
         }
@@ -111,4 +203,14 @@ String readPage(){
 
   }
 
+}
+void mensageminicial()
+{
+  lcd.clear();
+  lcd.print(" Aproxime o seu");  
+  lcd.setCursor(0,1);
+  lcd.print("cartao do leitor");  
+}
+void soft_reset() {
+  asm volatile("jmp 0");
 }
