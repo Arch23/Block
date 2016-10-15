@@ -51,6 +51,11 @@ void loop()
   {
     return;
   }
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Leitura Efetuada");
+  lcd.setCursor(0,1);
+  lcd.print("Processando...");
   
   byte letra;
   for (byte i = 0; i < mfrc522.uid.size; i++) 
@@ -65,7 +70,6 @@ void loop()
 }
 String connectAndRead(){
   //connect to the server
-  lcd.clear();
     client.print("GET ");
     client.print(location);
     client.print("key=");
