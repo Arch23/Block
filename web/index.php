@@ -4,11 +4,11 @@
 	<title>Login </title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./view/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./view/css/common.css">
    <link rel="stylesheet" type="text/css" href="./view/css/index.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="./view/jquery/bootstrap.min.js"></script>
 	<script>
 	function gotoLogin(){
 		$(document).ready(function(){

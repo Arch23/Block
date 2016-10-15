@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////
 //CONFIGURE
 ////////////////////////////////////////////////////////////////////////
-byte server[] = {192,168,1,101 }; //ip Address of the server you will connect to
+byte server[] = {192,168,1,100 }; //ip Address of the server you will connect to
 
 //The location to go to on the server
 //make sure to keep HTTP/1.0 at the end, this is telling it what type of file it is

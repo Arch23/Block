@@ -5,23 +5,22 @@ session_start(); //Puxa os dados da sessão para a pagina
 date_default_timezone_set ("America/Sao_Paulo");
 ?>
 <head>
-   <title>Reservar</title>
+  <title>Reservar</title>
    <meta charset="utf-8">
    <meta  content="width=970px, initial-scale=1">
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="./css/bootstrap.min.css">
    <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
-   <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
+   <link href="./datatables/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
+   <link href="./datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
    <link rel="stylesheet" type="text/css" href="./css/common.css">
    <link rel="stylesheet" type="text/css" href="./css/Reservar.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="./jquery/jquery-1.12.4.min.js"></script>
+   <script src="./jquery/bootstrap.min.js"></script>
    <script type="text/javascript" src="./jquery/jquery.click-calendario-1.0-min.js"></script>
-
-   <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
-   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
+   <script src="./datatables/jquery.dataTables.min.js"></script>
+   <script src="./datatables/dataTables.select.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="./datatables/select.dataTables.min.css">
+   <script type="text/javascript" language="javascript" src="./datatables/dataTables.buttons.min.js">
    </script>
    <script>
    $(document).ready(function(){ //Starta o calendário
@@ -97,7 +96,7 @@ date_default_timezone_set ("America/Sao_Paulo");
             bFilter:false,
             bInfo:false,
             select:{ //Modo de seleção de celulas
-               style: 'multi', //Permite selecionar várias celulas
+               style: 'os', //Permite selecionar várias celulas
                items: 'cell' //Seta para a  seleção de celulas
             },
             "iDisplayLength":50, //Excpande o máximo de entradas
@@ -120,9 +119,9 @@ date_default_timezone_set ("America/Sao_Paulo");
                         Sala:  $("#Salas option:selected").text()
                      },
                      function(data,status){
+                        gotoConsulta(); //Chama a consulta e inicializa a tabela novamente
                         alert(data); //Alerta o resultado obtido
-                     });
-                     gotoConsulta(); //Chama a consulta e inicializa a tabela novamente
+                     });                    
                   }
                }
             ]

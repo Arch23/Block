@@ -1,6 +1,46 @@
 <?php
-	$conn = new mysqli("localhost", "arduino", "","roomz");
 	date_default_timezone_set ("America/Sao_Paulo");
+
+	function verificaGrupoHor($codhorario,$usuario,$conn,$bloco,$andar,$sala){		
+		$cont=0;
+		$vet=array();
+		if(substr($codhorario,0,1)=='M'){
+			$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA WHERE HORARIO_ID_HORARIO LIKE 'M%' AND DATA_RESERVA='".date("Y-m-d")."'
+			 AND COD_USUARIO_RESERVA='$usuario' AND ID_SALA_RESERVA=".$sala." AND ID_ANDAR_RESERVA=".$andar."
+		     AND ID_BLOCO_RESERVA=".$bloco." AND HORARIO_ID_HORARIO >='$codhorario'";
+			$result=$conn->query($sql);
+			while($row=$result->fetch_assoc()){
+				array_push($vet,substr($row["HORARIO_ID_HORARIO"],1));
+			}
+		}
+		else if(substr($codhorario,0,1)=='T'){	
+			$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA WHERE HORARIO_ID_HORARIO LIKE 'T%' AND DATA_RESERVA='".date("Y-m-d")."'
+				 AND COD_USUARIO_RESERVA='$usuario' AND ID_SALA_RESERVA=".$sala." AND ID_ANDAR_RESERVA=".$andar."
+		         AND ID_BLOCO_RESERVA=".$bloco." AND HORARIO_ID_HORARIO >='$codhorario'";
+			$result=$conn->query($sql);
+			while($row=$result->fetch_assoc()){
+				array_push($vet,substr($row["HORARIO_ID_HORARIO"],1));	
+			}
+		}
+		else if(substr($codhorario,0,1)=='N'){
+			$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA WHERE HORARIO_ID_HORARIO LIKE 'N%' AND DATA_RESERVA='".date("Y-m-d")."'
+				 AND COD_USUARIO_RESERVA='$usuario' AND ID_SALA_RESERVA=".$sala." AND ID_ANDAR_RESERVA=".$andar."
+		         AND ID_BLOCO_RESERVA=".$bloco." AND HORARIO_ID_HORARIO >='$codhorario'";
+			$result=$conn->query($sql);
+			while($row=$result->fetch_assoc()){
+				array_push($vet,substr($row["HORARIO_ID_HORARIO"],1));
+			}			
+		}
+		 for($i=0;$i<count($vet)-1;$i++){
+		 		if($vet[$i+1]-$vet[$i]>1){
+		 			return substr($codhorario,0,1).$vet[$i];
+		 	} 		 	
+		 }
+		 return substr($codhorario,0,1).$vet[count($vet)-1];
+
+	}
+
+	$conn = new mysqli("localhost", "arduino", "","roomz");
 	$data=date("Y-m-d");
 	echo $data."\n";
 	
@@ -86,7 +126,6 @@
 	}else{
 		$codhorario="N6";
 	}
-	
 	echo "\n".$now->format('H:i:s');
 	echo "\n".$codhorario;
 
@@ -116,7 +155,7 @@
 		$sql="SELECT * FROM RESERVA WHERE ID_SALA_RESERVA=".$sala." AND ID_ANDAR_RESERVA=".$andar." AND ID_BLOCO_RESERVA=".$bloco." AND COD_USUARIO_RESERVA=".$codusuario." AND HORARIO_ID_HORARIO='$codhorario' AND DATA_RESERVA='$data'";
 			$Result=$conn->query($sql);
 			if($Result->num_rows>0){
-				echo"<Pode entrar>";
+				echo"<Pode entrar".verificaGrupoHor($codhorario,$codusuario,$conn,$bloco,$andar,$sala).">";
 			}else{
 				$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA_NORMAL WHERE DATA_RESERVA='$data' AND SALA_ID_SALA=$sala AND SALA_ID_ANDAR=$andar AND SALA_ID_BLOCO=$bloco AND HORARIO_ID_HORARIO='$codhorario'";
 				$sql2="SELECT * FROM RESERVA WHERE ID_SALA_RESERVA=".$sala." AND ID_ANDAR_RESERVA=".$andar." AND ID_BLOCO_RESERVA=".$bloco." AND HORARIO_ID_HORARIO='$codhorario' AND DATA_RESERVA='$data'";
@@ -136,7 +175,7 @@
 					if($dept==$dept2){
 						 $sql="INSERT INTO RESERVA VALUES('$data',$sala,$andar,$bloco,$codusuario,'$codhorario')";
 						 $Result=$conn->query($sql);
-						 echo "<Reserva liberada!>";
+						 echo "<Reserva liberada!".verificaGrupoHor($codhorario,$codusuario,$conn,$bloco,$andar,$sala).">";
 					}else{
 						echo "<Voce nao pode usar esta sala!>";
 					}
