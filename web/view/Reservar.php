@@ -104,6 +104,10 @@ date_default_timezone_set ("America/Sao_Paulo");
                {
                   text: 'Reservar', //Texto do  botão
                   action: function () {
+                     var recorrencia=prompt("Deseja Reservar Por Quantas Semanas?\nCaso seja deixado em branco o valor padrão é 1");
+                     if(recorrencia==null||recorrencia==""){
+                        recorrencia=1;
+                     }
                      var reserv = table.cells( { selected: true } ).data(); //Armazena os dados das celulas na váriavel reserv
                      var i=0; //starta o contador
                      var dadosreserv=[]; //Starta o array
@@ -116,7 +120,8 @@ date_default_timezone_set ("America/Sao_Paulo");
                         Tag: 3, //Envia os dados atraves do post
                         dadosreserv: st,
                         Bloco: $("#Bloco option:selected").text(),
-                        Sala:  $("#Salas option:selected").text()
+                        Sala:  $("#Salas option:selected").text(),
+                        Recorrencia: recorrencia
                      },
                      function(data,status){
                         gotoConsulta(); //Chama a consulta e inicializa a tabela novamente

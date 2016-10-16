@@ -131,7 +131,7 @@
 	
 	}
 
-	function realizaReserva($Bloco,$Andar,$Sala,$vet){//Função para realizar reservas
+	function realizaReserva($Bloco,$Andar,$Sala,$vet,$recorrencia){//Função para realizar reservas
 		$coduser=$_SESSION["usuario"]; //Puxa o usuário ppela sessão
 		$coduser=substr($coduser, 1); //Retira o a do codigo
 		$wd=0; //vigia
@@ -163,20 +163,24 @@
 			}
 		
 		foreach ($vet as $key=>$value) { 
+			for($a=0;$a<$recorrencia;$a++){
 				 if($value=="INDISPONÍVEL"){ //Verifica se selecionou uma indisponível
 				 	$wd++;
 			 	}		 	
 			 	else{
 			 		 $hor=substr($value, 0,2); //Puxa o ID do horário M1, M2, T5 etc...
 			    	 $data=substr($value,2,11); //Puxa a data
+			    	 $dateaux = strtotime("+".($a*7)."days", strtotime($data));
+				     $data= date("Y-m-d", $dateaux);
 			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')"; //Insere na tabela de reservas
 			     	 if($this->conn->query($sql)){
 			     	 	if($wd2==0){
 			     	 		echo "Os seguintes horários/datas foram reservados para você:\n"; //Cabeçalho da mensagem	
 			     	 	}
 			     	 	$wd2++;
-			     	 echo($hor.$data."\n"); //Informa as datas e horários reservados
+			     	 echo($hor." ".$data."\n"); //Informa as datas e horários reservados
 			     	}
+			     }
 
 			 	}
 		}

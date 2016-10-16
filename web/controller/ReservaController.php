@@ -22,11 +22,12 @@ include("../model/ReservaDAO.php");
 	}
 
 		else if($_POST["Tag"]==3){ //Realização de reserva
+			$recorrencia=$_POST["Recorrencia"];
 			$bloco=$_POST["Bloco"];
 			$sala=$_POST["Sala"];
 			$andar=substr($sala,0,1);//Faz o split de andar e sala
 			$salaid=substr($sala,1,1);
 			$dadosreserv=json_decode($_POST["dadosreserv"]); //Converte a string em um vetor novamente
-			$obj->realizaReserva($bloco,$andar,$salaid,$dadosreserv); //Chama o metodo de realização de reserva
+			$obj->realizaReserva($bloco,$andar,$salaid,$dadosreserv,$recorrencia); //Chama o metodo de realização de reserva
 			}
 ?>
