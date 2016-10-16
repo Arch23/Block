@@ -1,4 +1,3 @@
-
 //Programa : RFID - Controle de Acesso leitor RFID
  
 #include <SPI.h>
@@ -7,7 +6,7 @@
 #include <Ethernet.h>
 
 
-byte server[] = {192,168,1,100}; 
+byte server[] = {192,168,1,101}; 
 String location = " /block/web/model/ArduinoDAO.php?";
 
 
@@ -22,16 +21,13 @@ String aux;
 #define RST_PIN 9
 MFRC522 mfrc522(SS_PIN, RST_PIN); 
 LiquidCrystal lcd(6, 7, 5, 4, 3, 2); 
-char st[20];
 String conteudo= "";
 void setup() 
-{
-  Serial.begin(9600);   
+{   
   SPI.begin();     
   mfrc522.PCD_Init();   
   lcd.begin(16, 2); 
   Ethernet.begin(mac);
-  Serial.begin(9600);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Conectando...");
@@ -56,14 +52,11 @@ void loop()
   lcd.print("Leitura Efetuada");
   lcd.setCursor(0,1);
   lcd.print("Processando...");
-  
   byte letra;
   for (byte i = 0; i < mfrc522.uid.size; i++) 
   {   
      conteudo.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
-  Serial.println();
-  Serial.print(conteudo);
   delay(2000);
   String pageValue = connectAndRead();
  
@@ -184,7 +177,7 @@ String connectAndRead(){
   stringPos = 0;
   memset( &inString, 0, 32 );
 
-  while(true){
+  for(int a=0;a<4000;a++){
 
     if (client.available()) {
       char c = client.read();
@@ -206,7 +199,6 @@ String connectAndRead(){
     }
 
   }
-
 }
 void mensageminicial()
 {
