@@ -23,10 +23,13 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 LiquidCrystal lcd(6, 7, 5, 4, 3, 2); 
 String conteudo= "";
 void setup() 
-{   
+{
   SPI.begin();     
   mfrc522.PCD_Init();   
-  lcd.begin(16, 2); 
+  lcd.begin(16, 2);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Inicializando..."); 
   Ethernet.begin(mac);
   lcd.clear();
   lcd.setCursor(0,0);
