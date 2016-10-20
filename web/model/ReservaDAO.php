@@ -173,7 +173,7 @@
 			    	 $dateaux = strtotime("+".($a*7)."days", strtotime($data));
 				     $data= date("Y-m-d", $dateaux);
 			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')"; //Insere na tabela de reservas
-			     	 if($this->conn->query($sql)){
+			     	 if($this->conn->query($sql) && $dateaux>=time()){
 			     	 	if($wd2==0){
 			     	 		echo "<p>Os seguintes horários/datas foram reservados para você:</p>"; //Cabeçalho da mensagem	
 			     	 	}

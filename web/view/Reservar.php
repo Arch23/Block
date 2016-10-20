@@ -125,8 +125,13 @@ date_default_timezone_set ("America/Sao_Paulo");
                      },
                      function(data,status){
                         gotoConsulta(); //Chama a consulta e inicializa a tabela novamente
+                        if(!data==""){
                         document.getElementById("MensagemModal").innerHTML = data; //Coloca os dados dentro do primeiro modal
                         $("#Modal").modal();
+                        }else{
+                           document.getElementById("MensagemModal").innerHTML = "Nenhum Horário foi Reservado! Verifique suas opções escolhidas!";
+                           $("#Modal").modal();
+                        }
                      });                    
                   }
                }
