@@ -172,16 +172,18 @@
 			    	 $data=substr($value,2,11); //Puxa a data
 			    	 $dateaux = strtotime("+".($a*7)."days", strtotime($data));
 				     $data= date("Y-m-d", $dateaux);
+				     $dateaux = strtotime("+ 2 days", strtotime($data));
 			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')"; //Insere na tabela de reservas
-			     	 if($this->conn->query($sql) && $dateaux>=time()){
-			     	 	if($wd2==0){
-			     	 		echo "<p>Os seguintes horários/datas foram reservados para você:</p>"; //Cabeçalho da mensagem	
-			     	 	}
-			     	 	$wd2++;
-			     	 echo"<p>".($hor." ".$data)."</p>"; //Informa as datas e horários reservados
-			     	}
-			     }
-
+				    if($dateaux>=time()){
+				     	 if($this->conn->query($sql)){
+				     	 	if($wd2==0){
+				     	 		echo "<p>Os seguintes horários/datas foram reservados para você:</p>"; //Cabeçalho da mensagem	
+				     	 	}
+				     	 	$wd2++;
+				     	 echo"<p>".($hor." ".$data)."</p>"; //Informa as datas e horários reservados
+				     	}
+				  	   }
+				 	}
 			 	}
 		}
 		if($wd>0){ //Se o vigia detectar que foi selecionado um indisponível informa para o usuário
