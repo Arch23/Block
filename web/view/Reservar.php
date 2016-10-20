@@ -125,7 +125,8 @@ date_default_timezone_set ("America/Sao_Paulo");
                      },
                      function(data,status){
                         gotoConsulta(); //Chama a consulta e inicializa a tabela novamente
-                        alert(data); //Alerta o resultado obtido
+                        document.getElementById("MensagemModal").innerHTML = data; //Coloca os dados dentro do primeiro modal
+                        $("#Modal").modal();
                      });                    
                   }
                }
@@ -201,12 +202,24 @@ date_default_timezone_set ("America/Sao_Paulo");
          ?>
       </table>
    </div>
-
-
-   <!--
-   <div class="page-header">
-   <h1>Atualiações</h1>
-</div>
--->
+  <!-- Modal -->
+  <div class="modal fade" id="Modal" role="dialog">
+    <div class="modal-dialog">    
+      <!-- Conteudo do modal-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Resumo de horários reservados</h4>
+        </div>
+        <div id="MensagemModal" class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+    <!-- Fim do Modal --> 
 </body>
 </html>

@@ -24,17 +24,25 @@
           },
           function(data,status){
             if(data.search("criado")>=0){
-              alert("Usuário Já Existente!");
+              document.getElementById("MensagemModal").innerHTML="Usuário Já Existente!";
+              $("#Modal").modal();
             }
             else if(data.search("sucesso")>=0){
-              alert("Usuário Criado com Suceso!");
-              location.href="../index.php";
+              document.getElementById("MensagemModal").innerHTML="Usuário Criado com Suceso!";
+              document.getElementById("localbotao").innerHTML='<button onclick= "gotoLogin();" type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>';
+              $("#Modal").modal();
             }else{
-              alert("Erro ao criar usuário verifique seus dados e tente novamente!");
+              document.getElementById("MensagemModal").innerHTML="Erro ao criar usuário verifique seus dados e tente novamente!";
+              $("#Modal").modal();
             }
            });
 
     });
+  }
+  </script>
+  <script>
+  function gotoLogin(){
+    location.href="../index.php";
   }
   </script>
 
@@ -110,6 +118,25 @@
             </form>
          </div>
       </div>
-
+      <!-- Modal -->
+    <div class="modal fade" id="Modal" role="dialog">
+      <div class="modal-dialog">    
+        <!-- Conteudo do modal-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Atenção</h4>
+          </div>
+          <div class="modal-body">
+            <p id="MensagemModal"></p>
+          </div>
+          <div id="localbotao" class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+        
+      </div>
+    </div> 
+    <!-- Fim do Modal --> 
    </body>
    </html>

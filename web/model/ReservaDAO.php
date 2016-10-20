@@ -141,7 +141,7 @@
 		while($row=$Result->fetch_assoc()){ //Verifica o tipo de usuario
  			$departamento=$row["SIGLA_DEPARTAMENTO"]; //Aproveito para pegar o departamento
 			if($row["TIPO_USUARIO"]=="ALUNO"){ //Se for aluno não tem permissão
-				echo "Você não tem permissão para reservar salas!";
+				echo "<p>Você não tem permissão para reservar salas!</p>";
 				exit(); //Encerra o código
 			}
 		}
@@ -150,7 +150,7 @@
 		$Result=$this->conn->query($sql);
 		while($row=$Result->fetch_assoc()){
 			if($row["SIGLA_DEPARTAMENTO"]!=$departamento){ //Se o usuário não for daquele departamento informa o departamento e passa o contato
-				echo "Você não tem permissão para reservar esta sala!\nContate o ".$row["SIGLA_DEPARTAMENTO"]."!";
+				echo "<p>Você não tem permissão para reservar esta sala!\nContate o ".$row["SIGLA_DEPARTAMENTO"]."!</p>";
 				exit();
 			}
 
@@ -175,21 +175,21 @@
 			    	 $sql="INSERT INTO RESERVA VALUES('$data',$Sala,$Andar,$Bloco,$coduser,'$hor')"; //Insere na tabela de reservas
 			     	 if($this->conn->query($sql)){
 			     	 	if($wd2==0){
-			     	 		echo "Os seguintes horários/datas foram reservados para você:\n"; //Cabeçalho da mensagem	
+			     	 		echo "<p>Os seguintes horários/datas foram reservados para você:</p>"; //Cabeçalho da mensagem	
 			     	 	}
 			     	 	$wd2++;
-			     	 echo($hor." ".$data."\n"); //Informa as datas e horários reservados
+			     	 echo"<p>".($hor." ".$data)."</p>"; //Informa as datas e horários reservados
 			     	}
 			     }
 
 			 	}
 		}
 		if($wd>0){ //Se o vigia detectar que foi selecionado um indisponível informa para o usuário
-	 		echo "Atenção, você selecionou um ou mais horários indisponíveis!\n";
+	 		echo "<p>Atenção, você selecionou um ou mais horários indisponíveis!</p>";
 	 	}
 	 }
 	 else{ //Se o usuário não selecionar nenhum informa ao usuário.
-	 	echo "Selecione ao menos um horário";
+	 	echo "<p>Selecione ao menos um horário</p>";
 	 }
 				 	
 	}

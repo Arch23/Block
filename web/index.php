@@ -19,7 +19,7 @@
         	},
         	function(data,status){
         		if(data.search("nao")>0){
-        			alert("Usuário ou Senha Inválidos!");
+        			$("#Modal").modal();
         		}
         		else{
         		    //alert("Prossiga com login");
@@ -68,5 +68,25 @@
 				</form>
 			</div>
 		</div>
+		<!-- Modal -->
+	  <div class="modal fade" id="Modal" role="dialog">
+	    <div class="modal-dialog">    
+	      <!-- Conteudo do modal-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Atenção</h4>
+	        </div>
+	        <div id="MensagemModal" class="modal-body">
+	        	<p>Usuário ou Senha Inválidos!</p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div> 
+    <!-- Fim do Modal --> 
 	</body>
 </html>
