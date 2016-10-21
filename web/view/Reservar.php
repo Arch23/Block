@@ -90,7 +90,7 @@ date_default_timezone_set ("America/Sao_Paulo");
       $(document).ready(function() {
          $("#Tabela").dataTable().fnDestroy(); //Destroi a tabela antiga
          table = $('#Tabela').DataTable( { //Inicialização da tabela da api
-            dom: 'frtipB', //Modelo da tabela
+            dom: 'frtip', //Modelo da tabela
             ordering: false, //Remove ordenação, paginação, barra de busca e etc
             paginate: false,
             bFilter:false,
@@ -99,16 +99,7 @@ date_default_timezone_set ("America/Sao_Paulo");
                style: 'os', //Permite selecionar várias celulas
                items: 'cell' //Seta para a  seleção de celulas
             },
-            "iDisplayLength":50, //Excpande o máximo de entradas
-            buttons: [  //Seta o botão referente a tabela
-               {
-                  text: 'Reservar', //Texto do  botão
-                  action: function () {
-                     $("#Reserva-Modal").modal();
-                  
-                  }
-               }
-            ]
+            "iDisplayLength":50 //Excpande o máximo de entradas
          } );
       } );
    }
@@ -143,6 +134,11 @@ date_default_timezone_set ("America/Sao_Paulo");
                         }
                      });
     }
+   </script>
+   <script>
+   function chamaModal(){
+      $("#Reserva-Modal").modal();
+   }
    </script>
 
 </head>
@@ -202,12 +198,14 @@ date_default_timezone_set ("America/Sao_Paulo");
          <button type="button" onclick="gotoConsulta();return false;" class='reservar-button btn btn-default'>Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
+      <button onclick="chamaModal();" type="button" class="btn btn-default">Reservar</button>
       <table id="Tabela" class="display">
          <?php
          $coduser=$_SESSION["usuario"];
          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d"))."/".date("m")."/".date("Y"),$coduser);
          ?>
       </table>
+       <button onclick="chamaModal();" type="button" class="btn btn-default">Reservar</button>
    </div>
   <!-- Modal -->
   <div class="modal fade" id="Modal" role="dialog">
@@ -234,12 +232,12 @@ date_default_timezone_set ("America/Sao_Paulo");
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Doberval</h4>
+            <h4 class="modal-title">Confirmação de Reservas</h4>
           </div>
           <div  class="modal-body">
              <p>
                 Deseja Reservar Por Quantas Semanas?
-                <br />Caso seja deixado em branco o valor padrão é 1
+                <br />
              </p>
              <form class="" action="index.html" method="post">
                 <select id="Recorrencia">
