@@ -67,7 +67,7 @@ date_default_timezone_set ("America/Sao_Paulo");
          });
       });
    });
-   </script>   
+   </script>
    <script>
    function gotoConsulta(){ //Realiza a consulta para determinada sala e data
       $(document).ready(function(){
@@ -132,7 +132,7 @@ date_default_timezone_set ("America/Sao_Paulo");
                            document.getElementById("MensagemModal").innerHTML = "Nenhum Horário foi Reservado! Verifique suas opções escolhidas!";
                            $("#Modal").modal();
                         }
-                     });                    
+                     });
                   }
                }
             ]
@@ -153,7 +153,6 @@ date_default_timezone_set ("America/Sao_Paulo");
          <ul class="nav navbar-nav">
             <li><a href="Home.php">Home</a></li>
             <li class="active"><a href="Reservar.php">Reservar</a></li>
-            <li><a href="Consultar.php">Consultar</a></li>
             <li><a href="Historico.html">Histórico</a></li>
          </ul>
 
@@ -209,7 +208,7 @@ date_default_timezone_set ("America/Sao_Paulo");
    </div>
   <!-- Modal -->
   <div class="modal fade" id="Modal" role="dialog">
-    <div class="modal-dialog">    
+    <div class="modal-dialog">
       <!-- Conteudo do modal-->
       <div class="modal-content">
         <div class="modal-header">
@@ -222,9 +221,9 @@ date_default_timezone_set ("America/Sao_Paulo");
           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
         </div>
       </div>
-      
+
     </div>
-  </div> 
-    <!-- Fim do Modal --> 
+  </div>
+    <!-- Fim do Modal -->
 </body>
 </html>
