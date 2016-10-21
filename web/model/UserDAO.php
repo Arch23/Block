@@ -176,42 +176,40 @@
             if($row["DATA_RESERVA"]!=date("Y-m-d")){        
                 $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
               }else{
-                    if(substr($codhorario,0,1)=='M'){
-                        if(substr($row["HORARIO_ID_HORARIO"], 0,1)=='M'){
-                            if(substr($row["HORARIO_ID_HORARIO"], 1,1)>=substr($codhorario,1,1)){
-                              $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
-                            }
-                        }else{
-                            $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
-                        }
-                    }
-                    else if(substr($codhorario, 0,1)=='T'){
-                        if(substr($row["HORARIO_ID_HORARIO"], 0,1)=='M'){
-
-                        }
-                        else if(substr($row["HORARIO_ID_HORARIO"], 0,1)=='T'){
-                            if(substr($row["HORARIO_ID_HORARIO"], 1,1)>=substr($codhorario,1,1)){
-                              $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
-                            }
-                            }else{
-                            $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
-                            }                      
-                        }
-
-                        else if(substr($codhorario,0,1)=='N'){
-                            if(substr($codhorario,0,1)=='M' || substr($codhorario,0,1)=='T'){
-                                $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
-                            }else{
-                                if(substr($codhorario,0,1)=='N'){
-                                    if(substr($row["HORARIO_ID_HORARIO"], 1,1)>=substr($codhorario,1,1)){
-                                         $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
-                                    }else{
-
-                                    }
+                    if($codhorario!='N6'){
+                        if(substr($codhorario,0,1)=='M'){
+                            if(substr($row["HORARIO_ID_HORARIO"], 0,1)=='M'){
+                                if(substr($row["HORARIO_ID_HORARIO"], 1,1)>=substr($codhorario,1,1)){
+                                  $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
                                 }
-                            }                   
-                        }          
-                }
+                            }else{
+                                $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                            }
+                        }
+                        else if(substr($codhorario, 0,1)=='T'){
+                            if(substr($row["HORARIO_ID_HORARIO"], 0,1)=='M'){
+
+                            }
+                            else if(substr($row["HORARIO_ID_HORARIO"], 0,1)=='T'){
+                                if(substr($row["HORARIO_ID_HORARIO"], 1,1)>=substr($codhorario,1,1)){
+                                  $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                                }
+                                }else{
+                                $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                                }                      
+                            }                    
+                            else if(substr($codhorario,0,1)=='N'){
+                                if(substr($codhorario,0,1)!=substr($row["HORARIO_ID_HORARIO"], 0,1)){
+
+                                }
+                                else if(substr($row["HORARIO_ID_HORARIO"], 1,1)>=substr($codhorario,1,1)){
+                                     $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                                }
+                            }                            
+                    }else{
+                        $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                    }
+               }
             }
         }
 
