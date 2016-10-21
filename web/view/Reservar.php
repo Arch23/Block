@@ -20,8 +20,8 @@ date_default_timezone_set ("America/Sao_Paulo");
    <script src="./datatables/jquery.dataTables.min.js"></script>
    <script src="./datatables/dataTables.select.min.js"></script>
    <link rel="stylesheet" type="text/css" href="./datatables/select.dataTables.min.css">
-   <script type="text/javascript" language="javascript" src="./datatables/dataTables.buttons.min.js">
-   </script>
+   <script type="text/javascript" language="javascript" src="./datatables/dataTables.buttons.min.js"></script>
+   <script>var table=null;</script>
    <script>
    $(document).ready(function(){ //Starta o calendário
       $('#calendar').focus(function(){
@@ -89,7 +89,7 @@ date_default_timezone_set ("America/Sao_Paulo");
    function carregaTabela(){ //Starta a API
       $(document).ready(function() {
          $("#Tabela").dataTable().fnDestroy(); //Destroi a tabela antiga
-         var table = $('#Tabela').DataTable( { //Inicialização da tabela da api
+         table = $('#Tabela').DataTable( { //Inicialização da tabela da api
             dom: 'frtipB', //Modelo da tabela
             ordering: false, //Remove ordenação, paginação, barra de busca e etc
             paginate: false,
@@ -104,11 +104,20 @@ date_default_timezone_set ("America/Sao_Paulo");
                {
                   text: 'Reservar', //Texto do  botão
                   action: function () {
-                     var recorrencia=prompt("Deseja Reservar Por Quantas Semanas?\nCaso seja deixado em branco o valor padrão é 1");
-                     if(recorrencia==null||recorrencia==""){
-                        recorrencia=1;
-                     }
-                     var reserv = table.cells( { selected: true } ).data(); //Armazena os dados das celulas na váriavel reserv
+                     $("#Reserva-Modal").modal();
+                  
+                  }
+               }
+            ]
+         } );
+      } );
+   }
+   carregaTabela(); //Chama a função ao carregar a pagina para garantir que a tabela seja inicializada
+   </script>
+   <script>
+    function liberar(){
+                    var  recorrencia=$("#Recorrencia option:selected").val();
+                     var reserv = table.cells( { selected: true } ).data(); //Armazena os dados das celulas na váriavel reserva
                      var i=0; //starta o contador
                      var dadosreserv=[]; //Starta o array
                      for(i=0;i<reserv.length;i++){ //Filtra o array de reserva
@@ -131,16 +140,9 @@ date_default_timezone_set ("America/Sao_Paulo");
                         }else{
                            document.getElementById("MensagemModal").innerHTML = "Nenhum Horário foi Reservado! Verifique suas opções escolhidas!";
                            $("#Modal").modal();
-                           $("#Reserva-Modal").modal();
                         }
                      });
-                  }
-               }
-            ]
-         } );
-      } );
-   }
-   carregaTabela(); //Chama a função ao carregar a pagina para garantir que a tabela seja inicializada
+    }
    </script>
 
 </head>
@@ -240,7 +242,7 @@ date_default_timezone_set ("America/Sao_Paulo");
                 <br />Caso seja deixado em branco o valor padrão é 1
              </p>
              <form class="" action="index.html" method="post">
-                <select>
+                <select id="Recorrencia">
                    <option value="1">1</option>
                    <option value="2">2</option>
                    <option value="3">3</option>
@@ -249,7 +251,7 @@ date_default_timezone_set ("America/Sao_Paulo");
              </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+            <button onclick="liberar();" id="Confirmar" type="button" class="btn btn-default" data-dismiss="modal">Confirmar</button>
           </div>
         </div>
 

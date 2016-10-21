@@ -206,8 +206,8 @@
                                      $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
                                 }
                             }                            
-                    }else{
-                        $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                        }else{
+                          $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
                     }
                }
             }
