@@ -131,6 +131,7 @@ date_default_timezone_set ("America/Sao_Paulo");
                         }else{
                            document.getElementById("MensagemModal").innerHTML = "Nenhum Horário foi Reservado! Verifique suas opções escolhidas!";
                            $("#Modal").modal();
+                           $("#Reserva-Modal").modal();
                         }
                      });
                   }
@@ -225,5 +226,34 @@ date_default_timezone_set ("America/Sao_Paulo");
     </div>
   </div>
     <!-- Fim do Modal -->
+    <div class="modal fade" id="Reserva-Modal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Conteudo do modal-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Doberval</h4>
+          </div>
+          <div  class="modal-body">
+             <p>
+                Deseja Reservar Por Quantas Semanas?
+                <br />Caso seja deixado em branco o valor padrão é 1
+             </p>
+             <form class="" action="index.html" method="post">
+                <select>
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                </select>
+             </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
 </body>
 </html>
