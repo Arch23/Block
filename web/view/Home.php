@@ -56,7 +56,7 @@ date_default_timezone_set ("America/Sao_Paulo");
            <ul class="nav navbar-nav">
                <li class="active"><a href="#">Home</a></li>
                <li><a href="Reservar.php">Reservar</a></li>
-               <li><a href="Historico.html">Histórico</a></li>
+               <li><a href="Historico.php">Histórico</a></li>
            </ul>
 
            <ul class="nav navbar-nav navbar-right">

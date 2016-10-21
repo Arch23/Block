@@ -1,17 +1,63 @@
 
-.page-header{
-  margin-left: 100px;
-  margin-right: 100px;
+.blocks{
+   float: left;
+   margin-left: 5%;
 }
-.caixa1{
-   position: absolute;
-  top: 0px;
-  z-index: 0;
-  height: 80% ;
-  width:60% ;
-  border-radius: 1%;
-  background-color: #525252;
-  margin-left:20%;
-  margin-top:10%;
-  margin-bottom: 2%;
+
+.calendar{
+   border-radius: 5px;
+   height: 5%;
+}
+
+.h3{
+   padding-top: 10px;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+   color: #ffffff;
+   font-size: 330%;
+}
+
+.sub-h{
+   color: #ffffff;
+   font-size: 2em;
+   text-align: left;
+}
+
+.dropdown-list{
+   border-radius: 5px;
+
+}
+
+.dropdown-content{
+   color: #000000;
+}
+
+.table-position{
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 25px;
+   margin-bottom: 10px;
+   border-radius: 5px;
+}
+
+table.GeneratedTable {
+  width: 90%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #775cb9;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #775cb9;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #775cb9;
 }
