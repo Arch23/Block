@@ -9,6 +9,8 @@
    height: 5%;
 }
 
+
+
 .h3{
    padding-top: 10px;
    text-align: center;
@@ -60,4 +62,9 @@ table.GeneratedTable td, table.GeneratedTable th {
 
 table.GeneratedTable thead {
   background-color: #775cb9;
+}
+
+/*arrumar calendario*/
+div.calendario{
+   width: 156px;
 }

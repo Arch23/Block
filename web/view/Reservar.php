@@ -198,14 +198,18 @@ date_default_timezone_set ("America/Sao_Paulo");
          <button type="button" onclick="gotoConsulta();return false;" class='reservar-button btn btn-default'>Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
-      <button onclick="chamaModal();" type="button" class="btn btn-default">Reservar</button>
+      <div class="btn-position">
+         <button onclick="chamaModal();" type="button" class="btn btn-default">Reservar</button>
+      </div>
       <table id="Tabela" class="display">
          <?php
          $coduser=$_SESSION["usuario"];
          $obj->retornaReservaNormal("BLOCO 1",1,1,(date("d"))."/".date("m")."/".date("Y"),$coduser);
          ?>
       </table>
-       <button onclick="chamaModal();" type="button" class="btn btn-default">Reservar</button>
+      <div class="btn-position">
+        <button onclick="chamaModal();" type="button" class="btn btn-default">Reservar</button>
+       </div>
    </div>
   <!-- Modal -->
   <div class="modal fade" id="Modal" role="dialog">

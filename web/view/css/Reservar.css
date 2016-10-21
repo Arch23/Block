@@ -13,6 +13,13 @@
    font-size: 330%;
 }
 
+.btn-position{
+   width: 75px;
+   margin-left: auto;
+   margin-right: auto;
+   padding-top:25px;
+}
+
 .blocks{
    float: left;
    margin-left: 5%;
