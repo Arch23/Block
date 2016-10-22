@@ -6,7 +6,7 @@
 	 	function __construct($username,$password){ //Passa username e senha do usuário quando a classe for instanciada
 			$servername="localhost";
 			$dbname="roomz";
-			$this->conn = new mysqli($servername, $username, $password,$dbname); //Cria a conexão do usuário dentro da classe                 
+			$this->conn = new mysqli($servername, $username, $password,$dbname); //Cria a conexão do usuário dentro da classe
 
 		}
 		function verificaHorario(){
@@ -56,7 +56,7 @@
 
 			else if($h1200 <= $now && $now <=$h1300){
 				$codhorario="M6";
-			}	
+			}
 			else if($h1300 <= $now && $now <=$h1350){
 				$codhorario="T1";
 			}
@@ -93,7 +93,7 @@
 				$codhorario="N6";
 			}
 			return $codhorario;
-		}  
+		}
 
 		function retornaBlocos(){  //Insere os blocos no list na view
 				$sql="SELECT NOME_BLOCO FROM BLOCO";
@@ -108,18 +108,18 @@
 			$result=$this->conn->query($sql);
 				while($row = $result->fetch_assoc()) {
      				 echo '<option value="'.$row["ID_ANDAR"].$row["ID_SALA"].'" class="dropdown-contet">'.$row["ID_ANDAR"].$row["ID_SALA"].'</option>';
-    			}	
+    			}
 		}
 
-		function retornaReservaNormal($Bloco,$Andar,$Sala,$Datadia,$coduser){	//Retorna as reservas criando a tabela na view		
+		function retornaReservaNormal($Bloco,$Andar,$Sala,$Datadia,$coduser){	//Retorna as reservas criando a tabela na view
 			$codhorario= $this->verificaHorario();
 			$coduser=substr($coduser, 1); //Retira o a do nome de usuário
-			$dia=substr($Datadia, 0,2); //Pega o dia 
+			$dia=substr($Datadia, 0,2); //Pega o dia
 			$mes=substr($Datadia,3,2); //Pega o mes
 			$ano=substr($Datadia,6,4); //Pega o ano
 			$Data=($ano.'-'.$mes.'-'.$dia); //Transforma para o padrão do mysql
 			$timestamp=strtotime($Data); //pega o timestamp
-			$diasem=Date("D",$timestamp); //Pega o dia da semana 
+			$diasem=Date("D",$timestamp); //Pega o dia da semana
 			$datefix=0; //Dia fixo para referenciar a tabela
 			$letra='a'; //Letra do horário, M, T,N....
 			echo "<thead>"; //Cria o cabeçalho da tabela...
@@ -174,13 +174,13 @@
 					else if($i==2){
 						$letra='N';
 					}
-					echo"<tr>";					
+					echo"<tr>";
 					for($j=1; $j<7; $j++){ // De M1 até M6, T1 até T6....
-						echo '<td>'.$letra.$j.'</td>';				
-							for($k=0 ;$k<6; $k++){ //Percore os dias da semana 
+						echo '<td>'.$letra.$j.'</td>';
+							for($k=0 ;$k<6; $k++){ //Percore os dias da semana
 								$date = strtotime("+"."$k"."days", strtotime($datefix)); //Calcula o dia da semana
-								$date= date("Y-m-d", $date); //Transforma o padrão para mysql		
-								//Verifica a tabela de reserva normal		
+								$date= date("Y-m-d", $date); //Transforma o padrão para mysql
+								//Verifica a tabela de reserva normal
 								$sql="SELECT HORARIO_ID_HORARIO FROM RESERVA_NORMAL, BLOCO WHERE SALA_ID_BLOCO=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND SALA_ID_SALA=$Sala AND SALA_ID_ANDAR=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."'";
 
 								//Verifica outra trabela de reservas
@@ -195,14 +195,14 @@
 													if($codhorario!="N6"){
 													if(substr($codhorario,0,1)=='M'){
 															if($letra=='M'){
-																if($j>=substr($codhorario,1,1)){					
+																if($j>=substr($codhorario,1,1)){
 																	echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
 																}else{
-																	echo '<td style="color:gray;">INDISPONÍVEL</td>';	
+																	echo '<td style="color:gray;">INDISPONÍVEL</td>';
 																}
 															}
 															else{
-																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';	
+																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}
 														}
 														else if(substr($codhorario,0,1)=='T'){
@@ -213,7 +213,7 @@
 																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}
 															else{
-																echo '<td style="color:gray;">INDISPONÍVEL</td>';	
+																echo '<td style="color:gray;">INDISPONÍVEL</td>';
 															}
 														}
 														else if($letra=='N' AND substr($codhorario,0,1)=='N'){
@@ -221,7 +221,7 @@
 																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}
 															else{
-																echo '<td style="color:gray;">INDISPONÍVEL</td>';	
+																echo '<td style="color:gray;">INDISPONÍVEL</td>';
 															}
 														}
 														else{
@@ -243,19 +243,19 @@
 										 	echo '<td style="color:green;" class="tg-yw4l">Reservado para Você</td>';
 										  }else{
 											echo '<td style="color:red;" class="tg-yw4l">INDISPONÍVEL</td>';
-										 }	
-						
-									}																			
-						
+										 }
+
+									}
+
 					}
-					echo"</tr>";	
-					
+					echo"</tr>";
+
 				}
 
-					
+
 			}
 			echo "</tbody>";
-	
+
 	}
 
 	function realizaReserva($Bloco,$Andar,$Sala,$vet,$recorrencia){//Função para realizar reservas
@@ -276,7 +276,7 @@
 		AND SALA.ID_BLOCO=BLOCO.ID_BLOCO"; //Verifica o departamento da sala
 		$Result=$this->conn->query($sql);
 		while($row=$Result->fetch_assoc()){
-			if($row["SIGLA_DEPARTAMENTO"]!=$departamento){ //Se o usuário não for daquele departamento informa o departamento e passa o contato
+			if($row["SIGLA_DEPARTAMENTO"]!=$departamento && $row["SIGLA_DEPARTAMENTO"]!="NN"){ //Se o usuário não for daquele departamento informa o departamento e passa o contato
 				echo "<p>Você não tem permissão para reservar esta sala!\nContate o ".$row["SIGLA_DEPARTAMENTO"]."!</p>";
 				exit();
 			}
@@ -288,12 +288,12 @@
 			while($row=$Result->fetch_assoc()){
 				$Bloco=$row["ID_BLOCO"];
 			}
-		
-		foreach ($vet as $key=>$value) { 
+
+		foreach ($vet as $key=>$value) {
 			for($a=0;$a<$recorrencia;$a++){
 				 if($value=="INDISPONÍVEL"){ //Verifica se selecionou uma indisponível
 				 	$wd++;
-			 	}		 	
+			 	}
 			 	else{
 			 		 $hor=substr($value, 0,2); //Puxa o ID do horário M1, M2, T5 etc...
 			    	 $data=substr($value,2,11); //Puxa a data
@@ -304,7 +304,7 @@
 				    if($dateaux>=time()){
 				     	 if($this->conn->query($sql)){
 				     	 	if($wd2==0){
-				     	 		echo "<p>Os seguintes horários/datas foram reservados para você:</p>"; //Cabeçalho da mensagem	
+				     	 		echo "<p>Os seguintes horários/datas foram reservados para você:</p>"; //Cabeçalho da mensagem
 				     	 	}
 				     	 	$wd2++;
 				     	 echo"<p>".($hor." ".$data)."</p>"; //Informa as datas e horários reservados
@@ -320,7 +320,7 @@
 	 else{ //Se o usuário não selecionar nenhum informa ao usuário.
 	 	echo "<p>Selecione ao menos um horário</p>";
 	 }
-				 	
+
 	}
 	function cancelaReserva($bloco,$andar,$sala,$data,$horario){
 		$coduser=$_SESSION["usuario"]; //Puxa o usuário ppela sessão
