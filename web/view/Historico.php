@@ -4,13 +4,15 @@
    <title>Histórico</title>
    <meta charset="utf-8">
    <meta  content="width=970px, initial-scale=1">
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="./css/bootstrap.min.css">
    <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
+   <link href="./datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
    <link rel="stylesheet" type="text/css" href="./css/common.css">
-   <link rel="stylesheet" type="text/css" href="./css/Historico.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="./css/Reservar.css">
+   <script src="./jquery/jquery-1.12.4.min.js"></script>
+   <script src="./jquery/bootstrap.min.js"></script>
    <script type="text/javascript" src="./jquery/jquery.click-calendario-1.0-min.js"></script>
+   <script src="./datatables/jquery.dataTables.min.js"></script>
    <script>
    $(document).ready(function(){ //Starta o calendário
       $('#calendar').focus(function(){
@@ -30,6 +32,18 @@
       }
       document.getElementById("calendar").value = dia +"/" + mes+ "/"+ ano;
    });
+   </script>
+   <script>
+   function carregaTabela(){ //Starta a API
+      $(document).ready(function() {
+         $("#Tabela").dataTable().fnDestroy(); //Destroi a tabela antiga
+         var table = $('#Tabela').DataTable( { //Inicialização da tabela da api
+            dom: 'tp', //Modelo da tabela
+            "iDisplayLength":50 //Excpande o máximo de entradas
+         } );
+      } );
+   }
+   carregaTabela(); //Chama a função ao carregar a pagina para garantir que a tabela seja inicializada
    </script>
 </head>
 <body>
@@ -87,13 +101,13 @@
          <button type="button" onclick="gotoConsulta();return false;" class='reservar-button btn btn-default'>Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
-      <table class="GeneratedTable table-position">
+      <table id="Tabela" class="display">
          <thead>
             <tr>
-               <th>Data</th>
-               <th>Sala</th>
-               <th>Horário de Inicio</th>
-               <th>Horário de Termino</th>
+               <th style="color:white;">Data</th>
+               <th style="color:white;">Sala</th>
+               <th style="color:white;">Horário de Inicio</th>
+               <th style="color:white;">Horário de Termino</th>
             </tr>
          </thead>
          <tbody>
