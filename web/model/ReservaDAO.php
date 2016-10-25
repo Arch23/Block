@@ -92,7 +92,7 @@
 			}else{
 				$codhorario="N6";
 			}
-			return "N6";
+			return $codhorario;
 		}
 
 		function retornaBlocos(){  //Insere os blocos no list na view
