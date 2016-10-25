@@ -92,7 +92,7 @@
 			}else{
 				$codhorario="N6";
 			}
-			return $codhorario;
+			return "N6";
 		}
 
 		function retornaBlocos(){  //Insere os blocos no list na view
@@ -228,7 +228,18 @@
 															echo '<td style="color:gray;">INDISPONÍVEL</td>';
 														}
 													}else{
-														echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+														$hantes=new DateTime('23:00:00');
+														$hdepois= new DateTime('23:59:59');
+														$now2 = new DateTime('now');
+														if($now2>=$hantes AND $now2<=$hdepois){
+															if($letra=='N' AND $j==6){ 
+																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+															}else{		
+															echo '<td style="color:gray;">INDISPONÍVEL</td>';
+															}
+														}else{
+															echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+														}														
 													}
 												}else{
 													echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';

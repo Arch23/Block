@@ -207,7 +207,13 @@
                                 }
                             }                            
                         }else{
-                          $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                            $hantes=new DateTime('23:00:00');
+                            $hdepois= new DateTime('23:59:59');
+                            $now2 = new DateTime('now');
+                            if($now2>=$hantes AND $now2<=$hdepois){
+                            }else{
+                                $this->enviaDiv($cont,$row["ID_BLOCO_RESERVA"],$row["ID_ANDAR_RESERVA"],$row["ID_SALA_RESERVA"],$row["DATA_RESERVA"],$row["HORARIO_ID_HORARIO"]);
+                            }
                     }
                }
             }
