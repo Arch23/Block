@@ -12,7 +12,7 @@
    <link href="./css/jquery.click-calendario-1.0.css" rel="stylesheet" type="text/css"/>
    <link href="./datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
    <link rel="stylesheet" type="text/css" href="./css/common.css">
-   <link rel="stylesheet" type="text/css" href="./css/Reservar.css">
+   <link rel="stylesheet" type="text/css" href="./css/Historico.css">
    <script src="./jquery/jquery-1.12.4.min.js"></script>
    <script src="./jquery/bootstrap.min.js"></script>
    <script type="text/javascript" src="./jquery/jquery.click-calendario-1.0-min.js"></script>
@@ -87,7 +87,7 @@
                Tag: 1,
                Bloco: $("#Bloco option:selected").text(),
                DataInicio: $("#calendar").val(),
-               DataTermino:$("#calendar2").val() 
+               DataTermino:$("#calendar2").val()
             },
             function(data,status){
              document.getElementById("Tabela").innerHTML = data;
@@ -100,13 +100,13 @@
                Bloco: $("#Bloco option:selected").text(),
                DataInicio: $("#calendar").val(),
                DataTermino:$("#calendar2").val(),
-               Sala:$("#Salas option:selected").text() 
+               Sala:$("#Salas option:selected").text()
             },
             function(data,status){
              document.getElementById("Tabela").innerHTML = data;
              carregaTabela();
-            });            
-         }         
+            });
+         }
       }
    </script>
 </head>
@@ -160,10 +160,21 @@
             ?>
          </select>
       </div>
-      <div class="blocks">
+      <div class="data blocks">
          <h5 class="sub-h">Data: </h5>
-         <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10" value/>
-         <input class="calendar" type="text" name="calendar" id="calendar2" size="10" maxlength="10" value/>
+         <div class="data-h blocks">
+            Inicio:
+            <br>
+            Termino:
+         </div>
+         <div class="blocks" style="width: 50px;text-align: left;">
+            <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10" value/>
+            <br>
+            <input class="calendar" type="text" name="calendar" id="calendar2" size="10" maxlength="10" value/>
+         </div>
+      </div>
+      <div class="blocks">
+         <br><br>
          <button type="button" onclick="gotoConsulta();return false;" class='reservar-button btn btn-default'>Pesquisar</button>
       </div>
       <div class="clearfix"> </div>

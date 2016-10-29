@@ -26,6 +26,17 @@
    text-align: left;
 }
 
+.data-h{
+   color: #ffffff;
+   width: 50px;
+   text-align: left;
+}
+
+.data{
+   width: 125px;
+   margin-left: 5%;;
+}
+
 .dropdown-list{
    border-radius: 5px;
 
