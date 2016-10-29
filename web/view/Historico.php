@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
    session_start();
+   date_default_timezone_set ("America/Sao_Paulo");
 ?>
 <head>
    <title>Histórico</title>
