@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+   session_start();
+?>
 <head>
    <title>Histórico</title>
    <meta charset="utf-8">
@@ -20,6 +23,11 @@
             target:'#calendar'
          });
       });
+        $('#calendar2').focus(function(){
+         $(this).calendario({
+            target:'#calendar2'
+         });
+      });
       var dt= new Date();// Manipulações para exibir a data do diia na caixa de texto.
       var ano=dt.getFullYear();
       var dia=dt.getDate();
@@ -31,6 +39,31 @@
          mes= "0"+mes;
       }
       document.getElementById("calendar").value = dia +"/" + mes+ "/"+ ano;
+      document.getElementById("calendar2").value = dia +"/" + mes+ "/"+ ano;
+   });
+   </script>
+   <script>
+      $(document).ready(function(){
+      $('#Bloco').change(function(){
+         $(document).ready(function(){
+            $.post("../controller/ReservaController.php",
+            {
+               Tag: 1,
+               Bloco: $("#Bloco option:selected").text(),
+            },
+            function(data,status){
+               document.getElementById("Salas").innerHTML = '"<option value="TODOS" class="dropdown-contet">TODAS</option>"'+data;
+               gotoConsulta();
+            });
+         });
+      });
+   });
+   </script>
+    <script>
+      $(document).ready(function(){
+      $('#Salas').change(function(){
+        gotoConsulta();
+      });
    });
    </script>
    <script>
@@ -39,11 +72,41 @@
          $("#Tabela").dataTable().fnDestroy(); //Destroi a tabela antiga
          var table = $('#Tabela').DataTable( { //Inicialização da tabela da api
             dom: 'tp', //Modelo da tabela
-            "iDisplayLength":50 //Excpande o máximo de entradas
+            "iDisplayLength":20 //Excpande o máximo de entradas
          } );
       } );
    }
    carregaTabela(); //Chama a função ao carregar a pagina para garantir que a tabela seja inicializada
+   </script>
+   <script>
+      function gotoConsulta(){
+         if($("#Salas option:selected").text()=="TODAS"){
+            $.post("../controller/HistoricoController.php",
+            {
+               Tag: 1,
+               Bloco: $("#Bloco option:selected").text(),
+               DataInicio: $("#calendar").val(),
+               DataTermino:$("#calendar2").val() 
+            },
+            function(data,status){
+             document.getElementById("Tabela").innerHTML = data;
+             carregaTabela();
+            });
+         }else{
+            $.post("../controller/HistoricoController.php",
+            {
+               Tag: 2,
+               Bloco: $("#Bloco option:selected").text(),
+               DataInicio: $("#calendar").val(),
+               DataTermino:$("#calendar2").val(),
+               Sala:$("#Salas option:selected").text() 
+            },
+            function(data,status){
+             document.getElementById("Tabela").innerHTML = data;
+             carregaTabela();
+            });            
+         }         
+      }
    </script>
 </head>
 <body>
@@ -80,24 +143,26 @@
       <div class="blocks">
          <h5 class="sub-h">Bloco: </h5>
          <select id="Bloco" class="dropdown-list">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <?php
+            include("../model/ReservaDAO.php");
+            $obj=new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
+            $obj->retornaBlocos();
+            ?>
          </select>
       </div>
       <div class="blocks">
          <h5 class="sub-h">Sala: </h5>
          <select id="Salas" class="dropdown-list">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+         <option value="TODOS" class="dropdown-contet">TODAS</option>
+            <?php
+            $obj->retornaSalas("BLOCO 1");
+            ?>
          </select>
       </div>
       <div class="blocks">
          <h5 class="sub-h">Data: </h5>
          <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10" value/>
+         <input class="calendar" type="text" name="calendar" id="calendar2" size="10" maxlength="10" value/>
          <button type="button" onclick="gotoConsulta();return false;" class='reservar-button btn btn-default'>Pesquisar</button>
       </div>
       <div class="clearfix"> </div>
@@ -107,28 +172,15 @@
                <th style="color:white;">Data</th>
                <th style="color:white;">Sala</th>
                <th style="color:white;">Horário de Inicio</th>
-               <th style="color:white;">Horário de Termino</th>
             </tr>
          </thead>
-         <tbody>
-            <tr>
-               <td>Row 1, Cell 1</td>
-               <td>Row 1, Cell 2</td>
-               <td>Row 1, Cell 3</td>
-               <td>Row 1, Cell 4</td>
-            </tr>
-            <tr>
-               <td>Row 2, Cell 1</td>
-               <td>Row 2, Cell 2</td>
-               <td>Row 2, Cell 3</td>
-               <td>Row 2, Cell 4</td>
-            </tr>
-            <tr>
-               <td>Row 3, Cell 1</td>
-               <td>Row 3, Cell 2</td>
-               <td>Row 3, Cell 3</td>
-               <td>Row 3, Cell 4</td>
-            </tr>
+         <tbody id="InfosTabela">
+            <?php
+               include("../model/HistoricoDAO.php");
+               $obj=new HistoricoDAO($_SESSION["usuario"],$_SESSION["senha"]);
+               $obj->retornaHistorico((date("d"))."/".date("m")."/".date("Y"),
+                  (date("d"))."/".date("m")."/".date("Y"),"BLOCO 1");
+            ?>
          </tbody>
       </table>
    </div>
