@@ -64,6 +64,11 @@ table.GeneratedTable {
   color: #000000;
 }
 
+
+table.dataTable{
+   width: 90%;
+}
+
 table.GeneratedTable td, table.GeneratedTable th {
   border-width: 2px;
   border-color: #775cb9;

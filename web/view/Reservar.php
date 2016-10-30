@@ -195,6 +195,9 @@ date_default_timezone_set ("America/Sao_Paulo");
       <div class="blocks">
          <h5 class="sub-h">Data: </h5>
          <input class="calendar" type="text" name="calendar" id="calendar" size="10" maxlength="10" value/>
+      </div>
+      <div class="blocks">
+         <h5 class="sub-h" style="color:#1a1a1a">Lorem Ipsum</h5>
          <button type="button" onclick="gotoConsulta();return false;" class='reservar-button btn btn-default'>Pesquisar</button>
       </div>
       <div class="clearfix"> </div>

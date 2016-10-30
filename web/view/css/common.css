@@ -44,3 +44,13 @@ body {
    border-radius: 10px;
    padding-bottom: 30px;
 }
+
+table {
+   border:1px solid #FFFFFF;
+   border-radius: 5px;
+}
+td,th {border:none}
+
+th{
+   border:1px solid #FFFFFF;
+}
