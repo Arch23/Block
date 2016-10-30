@@ -47,15 +47,29 @@
       $(document).ready(function(){
       $('#Bloco').change(function(){
          $(document).ready(function(){
-            $.post("../controller/ReservaController.php",
-            {
-               Tag: 1,
-               Bloco: $("#Bloco option:selected").text(),
-            },
-            function(data,status){
-               document.getElementById("Salas").innerHTML = '"<option value="TODOS" class="dropdown-contet">TODAS</option>"'+data;
-               gotoConsulta();
-            });
+            if($('#Bloco option:selected').text()=='TODOS'){
+               document.getElementById("Salas").innerHTML = '"<option value="TODOS" class="dropdown-contet">TODAS</option>"';
+               $.post("../controller/HistoricoController.php",
+               {
+                  Tag: 3,
+                  DataInicio: $("#calendar").val(),
+                  DataTermino:$("#calendar2").val()
+               },
+               function(data,status){
+                  document.getElementById("Tabela").innerHTML = data;
+                  carregaTabela();
+               });
+            }else{
+               $.post("../controller/ReservaController.php",
+               {
+                  Tag: 1,
+                  Bloco: $("#Bloco option:selected").text(),
+               },
+               function(data,status){
+                  document.getElementById("Salas").innerHTML = '"<option value="TODOS" class="dropdown-contet">TODAS</option>"'+data;
+                  gotoConsulta();
+               });
+            }
          });
       });
    });
@@ -73,7 +87,7 @@
          $("#Tabela").dataTable().fnDestroy(); //Destroi a tabela antiga
          var table = $('#Tabela').DataTable( { //Inicialização da tabela da api
             dom: 'tp', //Modelo da tabela
-            "iDisplayLength":20 //Excpande o máximo de entradas
+            "iDisplayLength":50 //Expande o máximo de entradas
          } );
       } );
    }
@@ -81,7 +95,19 @@
    </script>
    <script>
       function gotoConsulta(){
-         if($("#Salas option:selected").text()=="TODAS"){
+         if($("#Bloco option:selected").text()=="TODOS"){
+            $.post("../controller/HistoricoController.php",
+               {
+                  Tag: 3,
+                  DataInicio: $("#calendar").val(),
+                  DataTermino:$("#calendar2").val()
+               },
+               function(data,status){
+               document.getElementById("Tabela").innerHTML = data;
+               carregaTabela();
+            });
+         }         
+         else if($("#Salas option:selected").text()=="TODAS"){
             $.post("../controller/HistoricoController.php",
             {
                Tag: 1,
@@ -144,6 +170,7 @@
       <div class="blocks">
          <h5 class="sub-h">Bloco: </h5>
          <select id="Bloco" class="dropdown-list">
+         <option value="TODOS" class="dropdown-contet">TODOS</option>
             <?php
             include("../model/ReservaDAO.php");
             $obj=new ReservaDAO($_SESSION["usuario"],$_SESSION["senha"]);
@@ -155,9 +182,6 @@
          <h5 class="sub-h">Sala: </h5>
          <select id="Salas" class="dropdown-list">
          <option value="TODOS" class="dropdown-contet">TODAS</option>
-            <?php
-            $obj->retornaSalas("BLOCO 1");
-            ?>
          </select>
       </div>
       <div class="data blocks">
@@ -183,15 +207,15 @@
             <tr>
                <th style="color:white;">Data</th>
                <th style="color:white;">Sala</th>
-               <th style="color:white;">Horário de Inicio</th>
+               <th style="color:white;">Horário</th>
             </tr>
          </thead>
          <tbody id="InfosTabela">
             <?php
                include("../model/HistoricoDAO.php");
                $obj=new HistoricoDAO($_SESSION["usuario"],$_SESSION["senha"]);
-               $obj->retornaHistorico((date("d"))."/".date("m")."/".date("Y"),
-                  (date("d"))."/".date("m")."/".date("Y"),"BLOCO 1");
+               $obj->retornaHistoricoCompleto((date("d"))."/".date("m")."/".date("Y"),
+                  (date("d"))."/".date("m")."/".date("Y"));
             ?>
          </tbody>
       </table>
