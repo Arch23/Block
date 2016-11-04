@@ -124,13 +124,13 @@
 			$letra='a'; //Letra do horário, M, T,N....
 			echo "<thead>"; //Cria o cabeçalho da tabela...
 				echo'<tr>
-           			<th style="color:white;" class="tg-yw4l">Cod</th>
-           			<th style="color:white;" class="tg-yw4l">Segunda</th>
-           			<th style="color:white;" class="tg-yw4l">Terça</th>
-           			<th style="color:white;"class="tg-yw4l">Quarta</th>
-        	     	<th style="color:white;"class="tg-yw4l">Quinta</th>
-            		<th style="color:white;"class="tg-yw4l">Sexta</th>
-            		<th style="color:white;"class="tg-yw4l">Sábado</th>
+           			<th style="color:white;" class="tg-yw4l cel-width">Cod</th>
+           			<th style="color:white;" class="tg-yw4l cel-width">Segunda</th>
+           			<th style="color:white;" class="tg-yw4l cel-width">Terça</th>
+           			<th style="color:white;"class="tg-yw4l cel-width">Quarta</th>
+        	     	<th style="color:white;"class="tg-yw4l cel-width">Quinta</th>
+            		<th style="color:white;"class="tg-yw4l cel-width">Sexta</th>
+            		<th style="color:white;"class="tg-yw4l cel-width">Sábado</th>
          </tr>';
          echo "</thead>";
          echo "<tbody>";
@@ -196,36 +196,36 @@
 													if(substr($codhorario,0,1)=='M'){
 															if($letra=='M'){
 																if($j>=substr($codhorario,1,1)){
-																	echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+																	echo '<td class="cel-width" style="color:blue;">'.$letra.$j." ".$date.'</td>';
 																}else{
-																	echo '<td style="color:gray;">INDISPONÍVEL</td>';
+																	echo '<td class="cel-width" style="color:gray;">------------------L</td>';
 																}
 															}
 															else{
-																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+																echo '<td  class="cel-width"style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}
 														}
 														else if(substr($codhorario,0,1)=='T'){
 															if($letra=='N'){
-																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+																echo '<td class="cel-width" style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}
 															else if(($letra=='T') AND ($j>=substr($codhorario,1,1))){
-																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+																echo '<td class="cel-width" style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}
 															else{
-																echo '<td style="color:gray;">INDISPONÍVEL</td>';
+																echo '<td class="cel-width" style="color:gray;">------------------</td>';
 															}
 														}
 														else if($letra=='N' AND substr($codhorario,0,1)=='N'){
 															if($j>=substr($codhorario,1,1)){
-																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+																echo '<td class="cel-width" style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}
 															else{
-																echo '<td style="color:gray;">INDISPONÍVEL</td>';
+																echo '<td class="cel-width" style="color:gray;">------------------L</td>';
 															}
 														}
 														else{
-															echo '<td style="color:gray;">INDISPONÍVEL</td>';
+															echo '<td class="cel-width" style="color:gray;">------------------</td>';
 														}
 													}else{
 														$hantes=new DateTime('23:00:00');
@@ -233,27 +233,27 @@
 														$now2 = new DateTime('now');
 														if($now2>=$hantes AND $now2<=$hdepois){
 															if($letra=='N' AND $j==6){ 
-																echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+																echo '<td class="cel-width" style="color:blue;">'.$letra.$j." ".$date.'</td>';
 															}else{		
-															echo '<td style="color:gray;">INDISPONÍVEL</td>';
+															echo '<td class="cel-width" style="color:gray;">------------------</td>';
 															}
 														}else{
-															echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+															echo '<td class="cel-width" style="color:blue;">'.$letra.$j." ".$date.'</td>';
 														}														
 													}
 												}else{
-													echo '<td style="color:blue;">'.$letra.$j." ".$date.'</td>';
+													echo '<td class="cel-width" style="color:blue;">'.$letra.$j." ".$date.'</td>';
 												}
 										}else{
-											echo '<td style="color:gray;">INDISPONÍVEL</td>';
+											echo '<td class="cel-width" style="color:gray;">------------------</td>';
 										}
 									}else{ //Verifica se a reserva é daquele usuário ou se é de outro
 										 $sqlu= "SELECT HORARIO_ID_HORARIO FROM RESERVA, BLOCO WHERE ID_BLOCO_RESERVA=BLOCO.ID_BLOCO AND '".$Bloco."'=BLOCO.NOME_BLOCO AND DATA_RESERVA='$date' AND ID_SALA_RESERVA=$Sala AND ID_ANDAR_RESERVA=$Andar AND HORARIO_ID_HORARIO='".$letra.$j."' AND COD_USUARIO_RESERVA=".$coduser;
 									     $Resultu=$this->conn->query($sqlu);
 										 if($Resultu->num_rows!=0){
-										 	echo '<td style="color:green;" class="tg-yw4l">Reservado para Você</td>';
+										 	echo '<td style="color:green;" class="tg-yw4l cel-width">Reservado para Você</td>';
 										  }else{
-											echo '<td style="color:red;" class="tg-yw4l">INDISPONÍVEL</td>';
+											echo '<td style="color:red;" class="tg-yw4l cel-width">------------------</td>';
 										 }
 
 									}
@@ -318,8 +318,20 @@
 				     	 		echo "<p>Os seguintes horários/datas foram reservados para você:</p>"; //Cabeçalho da mensagem
 				     	 	}
 				     	 	$wd2++;
-				     	 echo"<p>".($hor." ".$data)."</p>"; //Informa as datas e horários reservados
-				     	}
+				     	 echo "<p style='color:blue'>".($hor." ".$data)." Reservado com sucesso!</p>"; //Informa as datas e horários reservados
+				     	}else{
+				     			$sql="SELECT COD_USUARIO_RESERVA FROM RESERVA, BLOCO WHERE ID_BLOCO_RESERVA=$Bloco AND DATA_RESERVA='$data' AND ID_SALA_RESERVA=$Sala AND ID_ANDAR_RESERVA=$Andar AND HORARIO_ID_HORARIO='$hor'";
+				     			$Result=$this->conn->query($sql);
+				     			$nomeuseraux="";
+				     			while($row=$Result->fetch_assoc()){
+				     				$nomeuseraux=$row['COD_USUARIO_RESERVA'];
+				     			}
+				     			if($nomeuseraux==$coduser){
+				     	 			echo "<p style='color:green;'>".($hor." ".$data)." Já Reservado Para Você!</p>" ;
+				     	 		}else{
+				     	 			echo "<p style='color:red;'>".($hor." ".$data)." Já Reservado!</p>" ;
+				     	 		}
+				     	 	}
 				  	   }
 				 	}
 			 	}
