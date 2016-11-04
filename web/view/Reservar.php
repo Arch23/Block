@@ -161,7 +161,7 @@ date_default_timezone_set ("America/Sao_Paulo");
                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
                <ul class="dropdown-menu">
                   <li><a href="Configuracoes.html">Configurações</a></li>
-                  <li><a href="Ajuda.html">Ajuda</a></li>
+                  <li><a href="Ajuda.php">Ajuda</a></li>
                   <!--<li><a href="#">OPÇÃO DE LINK 2</a></li>-->
                   <li role="separator" class="divider"></li>
                   <li><a href="../controller/SairController.php">Sair</a></li>
