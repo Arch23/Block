@@ -56,15 +56,14 @@ date_default_timezone_set ("America/Sao_Paulo");
 
 
 	<div class="fundo3">
+		</br>
 		<div class="div-titulo">
 			<h2 class="titulo">Como utilizar o sistema:</h2>
 		</div>
 		<hr style="border: 2px dashed black; width: 99%;" />
 
-		<div class="container">
-
 			<div class="panel-group" id="accordion">
-				<div class="faqHeader">Reservas</div>
+				<h3 class="faqHeader subtitulo">Reservas</h3>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -82,7 +81,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">PERGUNTA?</a>
+							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Como funciona a reserva de ambientes presencialmente?</a>
 						</h4>
 					</div>
 					<div id="collapseTen" class="panel-collapse collapse">
@@ -96,7 +95,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">PERGUNTA?</a>
+							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">O que são os estados de um ambiente?</a>
 						</h4>
 					</div>
 					<div id="collapseEleven" class="panel-collapse collapse">
@@ -106,13 +105,13 @@ date_default_timezone_set ("America/Sao_Paulo");
 					</div>
 				</div>
 
-
-				<div class="faqHeader">Tópico 2</div>
+				</br>
+				<h3 class="faqHeader subtitulo">Tópico 2</h3>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">PERGUNTA?</a>
+							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> Como consultar se uma sala está reservada??</a>
 						</h4>
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse">
@@ -126,7 +125,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">PERGUNTA?</a>
+							<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Quantos horários posso reservar?</a>
 						</h4>
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse">
@@ -185,8 +184,6 @@ date_default_timezone_set ("America/Sao_Paulo");
 				</div>
 
 			</div>
-		</div>
-
 	</div>
 
 </body>
