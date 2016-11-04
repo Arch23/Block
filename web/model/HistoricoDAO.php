@@ -61,7 +61,7 @@
 			$datainicio=$anoi."-".$mesi."-".$diai;
 			$datatermino=$anot."-".$mest."-".$diat;
 			$usuario=substr($this->username, 1);
-			$result=$this->conn->query("SELECT * FROM RESERVA,BLOCO WHERE DATA_RESERVA BETWEEN '".$datainicio."' AND '".$datatermino."' AND  COD_USUARIO_RESERVA='$usuario' ORDER BY DATA_RESERVA,CASE WHEN HORARIO_ID_HORARIO LIKE 'M%' THEN 1 WHEN HORARIO_ID_HORARIO LIKE 'T%' THEN 2 ELSE 3 END;");
+			$result=$this->conn->query("SELECT * FROM RESERVA WHERE DATA_RESERVA BETWEEN '".$datainicio."' AND '".$datatermino."' AND  COD_USUARIO_RESERVA='$usuario' ORDER BY DATA_RESERVA,CASE WHEN HORARIO_ID_HORARIO LIKE 'M%' THEN 1 WHEN HORARIO_ID_HORARIO LIKE 'T%' THEN 2 ELSE 3 ENd;");
 			while($row=$result->fetch_assoc()){
 				echo "<tr>";
 				echo "<td>".$row['DATA_RESERVA']."</td>
