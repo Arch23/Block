@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="./view/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./view/css/common.css">
    <link rel="stylesheet" type="text/css" href="./view/css/index.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="./view/jquery/jquery-1.12.4.min.js"></script>
 	<script src="./view/jquery/bootstrap.min.js"></script>
 	<script>
 	function gotoLogin(){

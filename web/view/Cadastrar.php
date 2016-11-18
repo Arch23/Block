@@ -7,7 +7,7 @@
  <link rel="stylesheet" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/common.css">
    <link rel="stylesheet" type="text/css" href="./css/Cadastrar.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="./jquery/jquery-1.12.4.min.js"></script>
    <script src="./jquery/bootstrap.min.js"></script>
    <script>
   function gotoCadastro(){
