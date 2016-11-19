@@ -110,3 +110,10 @@
   transform: rotate(90deg);
   color: #454444;
 }
+
+#center{
+    position:absolute;
+    left:50%;
+    top:50%;
+    
+}
