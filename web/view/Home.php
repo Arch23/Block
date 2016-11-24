@@ -51,7 +51,7 @@ date_default_timezone_set ("America/Sao_Paulo");
    <nav class="navbar navbar-inverse">
        <div class="container-fluid">
            <div class="navbar-header">
-               <a class="navbar-brand" href="#">S.G.S.</a>
+               <a class="navbar-brand" href="Home.php">ROOMZ</a>
            </div>
            <ul class="nav navbar-nav">
                <li class="active"><a href="#">Home</a></li>
@@ -64,7 +64,6 @@ date_default_timezone_set ("America/Sao_Paulo");
                <li class="dropdown">
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
                    <ul class="dropdown-menu">
-                       <li><a href="Configuracoes.html">Configurações</a></li>
                        <li><a href="Ajuda.php">Ajuda</a></li>
                        <!--<li><a href="#">OPÇÃO DE LINK 2</a></li>-->
                        <li role="separator" class="divider"></li>

@@ -22,14 +22,13 @@ date_default_timezone_set ("America/Sao_Paulo");
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">S.G.A.</a>
+				<a class="navbar-brand" href="Home.php">ROOMZ</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<!-- <li class="active"><a href="#">Home</a></li>-->
 				<li><a href="Reservar.php">Home</a></li>
 				<li><a href="Reservar.php">Reservar</a></li>
 				<li><a href="Historico.php">Histórico</a></li>
-				<li class="active"><a href="#">Ajuda</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -37,7 +36,6 @@ date_default_timezone_set ("America/Sao_Paulo");
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="Configuracoes.html">Configurações</a></li>
 						<li><a href="#">Ajuda</a></li>
 						<!--<li><a href="#">OPÇÃO DE LINK 2</a></li>-->
 						<li role="separator" class="divider"></li>
@@ -72,7 +70,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
-						ROOMZ é um sistema utilizado para gerenciar reservas de ambientes, no qual o usuário poderá reservar o ambiente pela internet ou presencialmente, pelo meio de um RFID. 
+						ROOMZ é um sistema utilizado para gerenciar reservas de ambientes, no qual o usuário poderá reservar o ambiente pela internet ou presencialmente, pelo meio de um RFID.
 					</div>
 				</div>
 			</div>
@@ -101,7 +99,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 					<div class="panel-body">
 						Ao concluir a reserva de um ambiente, o sistema ROOMZ gera automáticamente um bloco de lembrete que é adicionado à pagina inicial do usuário no sistema.
 						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\inicio.png"  id="center"/> 
+						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\inicio.png"  id="center"/>
 						<br/>
 						Nesse bloco ficam visíveis as informações da reserva feita por um usuário, para lembrá-lo da reserva que fez. No fim do bloco há um botão "X", que ao ser pressionado gera a exclusão da reserva e do bloco. Uma vez excluída, a ação não pode ser revertida, mas o ambiente está novamente livre no dia e no horário que estava ocupado, sendo passível de uma nova reserva.
 					</div>
@@ -119,7 +117,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 			</div>
 			<div id="collapseFour" class="panel-collapse collapse">
 				<div class="panel-body">
-					O usuário poderá reservar  de duas maneiras:	
+					O usuário poderá reservar  de duas maneiras:
 					<ol>
 						<li><strong>Presencialmente:</strong></li>
 
@@ -127,16 +125,16 @@ date_default_timezone_set ("America/Sao_Paulo");
 						Este método é utilizado para reservar salas disponíveis presencialmente, sem o acesso ao sistema pela internet.
 						Para reservar um ambiente, basta aproximar o cartão do leitor RFID e se ele estiver livre, o ambiente estará reservado.
 						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\roomz1.png"  id="center"/>  
+						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\roomz1.png"  id="center"/>
 						<br/>
 
 
 						<li><strong>Pelo sistema online:</strong></li>
 						Na página de reservas, seleciona-se o bloco e a sala do ambiente desejado, bem como a data e os horários requeridos, de acordo com a disponibilidade dos mesmos.
 						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\roomz2.png" id="center" />  
+						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\roomz2.png" id="center" />
 						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\reservar1.png"  id="center"/> 
+						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\reservar1.png"  id="center"/>
 						<br/>
 
 
@@ -217,7 +215,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 						<li><strong>Alunos:</strong> Podem observar os estados dos ambientes. Porém não possuem permissão para realizar nenhuma reserva.</li>
 
 						<li><strong>Professores:</strong> Podem oberservar o estado de qualquer ambiente. Podem fazer reservas de ambientes que pertencem ao seu próprio departamento(ex: mecânica) e ambientes que não pertencem a departamento nenhum(ex: salas de aula).</li>
-					</ul> 
+					</ul>
 				</div>
 			</div>
 		</div>

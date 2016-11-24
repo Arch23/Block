@@ -17,7 +17,7 @@
 }
 .titulo{
   text-align: left;
-  color: #737373;
+  color: #FFFFFF;
   font-size: 210%;
   margin: 15px;
 }
@@ -41,7 +41,7 @@
 .subtitulo{
   font-size: 22px;
   margin: 25px;
-  color: #737373;
+  color: #FFFFFF;
 }
 
 
@@ -115,5 +115,5 @@
     position:absolute;
     left:50%;
     top:50%;
-    
+
 }
