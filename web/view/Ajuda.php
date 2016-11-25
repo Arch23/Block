@@ -99,7 +99,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 					<div class="panel-body">
 						Ao concluir a reserva de um ambiente, o sistema ROOMZ gera automáticamente um bloco de lembrete que é adicionado à pagina inicial do usuário no sistema.
 						<br/>
-						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\mensagem"  id="center"/>
+						<img width="85%" src=".\Img\mensagem.png"  id="center"/>
 						<br/>
 						Nesse bloco ficam visíveis as informações da reserva feita por um usuário, para lembrá-lo da reserva que fez. No fim do bloco há um botão "X", que ao ser pressionado gera a exclusão da reserva e do bloco. Uma vez excluída, a ação não pode ser revertida, mas o ambiente está novamente livre no dia e no horário que estava ocupado, sendo passível de uma nova reserva.
 					</div>
@@ -122,7 +122,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 						<li><strong>Presencialmente:</strong></li>
 
 						<br/>
-						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\roomz1.png"  id="center"/>
+						<img src=".\Img\roomz1.png"  id="center"/>
 						<br/>
 
 						Por meio de um cartão RFID, é possivel reservar um ambiente por um determinado período de tempo.
@@ -131,7 +131,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 
 						<li><strong>Pelo sistema online:</strong></li>
 
-						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\roomz2.png" id="center" />
+						<img src=".\Img\roomz2.PNG" id="center" />
 						<br/>
 
 						Na página de reservas, seleciona-se o bloco e a sala do ambiente desejado, bem como a data e os horários requeridos, de acordo com a disponibilidade dos mesmos.
@@ -139,7 +139,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 						caso queira reservar a sala no mesmo horário, para mais de uma semana e ao clicar confirmar, o ambiente estará reservado.
 						<br/>
 
-						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\pagina_inicial.png"  id="center"/>
+						<img width="85%" src=".\Img\Reserva_Sala.PNG"  id="center"/>
 						<br/>
 
 					</ol>
