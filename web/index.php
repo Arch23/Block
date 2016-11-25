@@ -34,8 +34,12 @@
 <body>
 
 	<div class="fundo2">
-		<h2 class="h2">Sistema de salas</h2>
-		<h3 class="h3">Digite seus dados</h2>
+		<div class="box">
+			<h2 class="h2">Roomz</h2>
+			<h3 class="h3">Digite seus dados</h2>
+		</div>
+
+
 			<div class="itens">
 				<form onsubmit="gotoLogin();return false;" id="target" class="form-horizontal">
 					<div class="form-group">
@@ -70,7 +74,7 @@
 		</div>
 		<!-- Modal -->
 	  <div class="modal fade" id="Modal" role="dialog">
-	    <div class="modal-dialog">    
+	    <div class="modal-dialog">
 	      <!-- Conteudo do modal-->
 	      <div class="modal-content">
 	        <div class="modal-header">
@@ -84,9 +88,9 @@
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 	        </div>
 	      </div>
-	      
+
 	    </div>
-	  </div> 
-    <!-- Fim do Modal --> 
+	  </div>
+    <!-- Fim do Modal -->
 	</body>
 </html>
