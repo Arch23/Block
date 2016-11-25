@@ -60,7 +60,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 	</div>
 	<hr style="border: 2px dashed black; width: 99%;" />
 		<div class="panel-group" id="accordion">
-			<h3 class="faqHeader subtitulo">Duvidas prequentes</h3>
+			<h3 class="faqHeader subtitulo">Dúvidas Frequentes</h3>
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -70,7 +70,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
-						ROOMZ é um sistema utilizado para gerenciar reservas de ambientes, no qual o usuário poderá reservar o ambiente pela internet ou presencialmente, pelo meio de um RFID.
+						ROOMZ é um sistema utilizado para gerenciar reservas de ambientes, no qual o usuário poderá reservar o ambiente pela internet ou presencialmente, por meio de um RFID.
 					</div>
 				</div>
 			</div>
@@ -99,7 +99,7 @@ date_default_timezone_set ("America/Sao_Paulo");
 					<div class="panel-body">
 						Ao concluir a reserva de um ambiente, o sistema ROOMZ gera automáticamente um bloco de lembrete que é adicionado à pagina inicial do usuário no sistema.
 						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\inicio.png"  id="center"/>
+						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\mensagem"  id="center"/>
 						<br/>
 						Nesse bloco ficam visíveis as informações da reserva feita por um usuário, para lembrá-lo da reserva que fez. No fim do bloco há um botão "X", que ao ser pressionado gera a exclusão da reserva e do bloco. Uma vez excluída, a ação não pode ser revertida, mas o ambiente está novamente livre no dia e no horário que estava ocupado, sendo passível de uma nova reserva.
 					</div>
@@ -121,22 +121,26 @@ date_default_timezone_set ("America/Sao_Paulo");
 					<ol>
 						<li><strong>Presencialmente:</strong></li>
 
+						<br/>
+						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\roomz1.png"  id="center"/>
+						<br/>
+
 						Por meio de um cartão RFID, é possivel reservar um ambiente por um determinado período de tempo.
 						Este método é utilizado para reservar salas disponíveis presencialmente, sem o acesso ao sistema pela internet.
 						Para reservar um ambiente, basta aproximar o cartão do leitor RFID e se ele estiver livre, o ambiente estará reservado.
-						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\roomz1.png"  id="center"/>
-						<br/>
-
 
 						<li><strong>Pelo sistema online:</strong></li>
-						Na página de reservas, seleciona-se o bloco e a sala do ambiente desejado, bem como a data e os horários requeridos, de acordo com a disponibilidade dos mesmos.
-						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\roomz2.png" id="center" />
-						<br/>
-						<img src="C:\Users\Gabriela\Documents\GitHub\ProjetosGit\Block\web\view\Img\reservar1.png"  id="center"/>
+
+						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\roomz2.png" id="center" />
 						<br/>
 
+						Na página de reservas, seleciona-se o bloco e a sala do ambiente desejado, bem como a data e os horários requeridos, de acordo com a disponibilidade dos mesmos.
+						Para escolher mais de uma sala, o atalho ctrl + botão esquerdo do mouse é utilizado. Após escolher os horários, ao clicar em reservar, irá aparecer uma mensagem para
+						caso queira reservar a sala no mesmo horário, para mais de uma semana e ao clicar confirmar, o ambiente estará reservado.
+						<br/>
+
+						<img src="C:\Users\André Costa Lopes\Documents\GitHub\Block\web\view\Img\pagina_inicial.png"  id="center"/>
+						<br/>
 
 					</ol>
 				</div>
